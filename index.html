@@ -1489,8 +1489,8 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
         <div style="background:var(--ML);border-radius:var(--RB);padding:8px 12px;font-size:12px;color:var(--M);margin-bottom:12px">📋 Fixed 15-year term &nbsp;·&nbsp; USD premiums &nbsp;·&nbsp; Min USD 45/month</div>
         <div id="my-tmv-area">
           <label class="f-lbl">Target Maturity Value (USD) *</label>
-          <input class="f-inp" type="number" id="my-tmv" min="11700" step="500" placeholder="e.g. 13,000">
-          <div id="my-tmv-err" class="err">Minimum target value is USD 11,700 (equiv. USD 45/month).</div>
+          <input class="f-inp" type="number" id="my-tmv" min="11551" step="500" placeholder="e.g. 13,000">
+          <div id="my-tmv-err" class="err">Minimum target value is USD 11,551 (equiv. USD 45/month).</div>
         </div>
         <div id="my-prem-area" style="display:none">
           <label class="f-lbl">Monthly Premium (USD) *</label>
@@ -3212,15 +3212,16 @@ function resetQuote(){
 /* ═══════════════════════════════════════════
    MANGA YAKO — STATE & CONSTANTS
 ═══════════════════════════════════════════ */
-const MY_RATE      = 50.648;   // Monthly premium rate per USD 13,000 TMV (flat all ages)
-const MY_BASE_TMV  = 13000;    // Base TMV for the rate table
-const MY_MIN_TMV   = 13000;    // Minimum Target Maturity Value (USD)
-const MY_MIN_PREM  = 45;       // Minimum monthly premium (USD)
-const MY_TERM      = 15;       // Fixed 15-year term
-const MY_DEATH_BEN = 1000;     // Minimum death benefit (USD)
+const MY_RATE      = 50.648;                              // Rate per USD 13,000 target (flat, all ages 18-60)
+const MY_DIVISOR   = 13000;                               // Divisor in formula
+const MY_TERM      = 15;                                  // Fixed 15-year term
+const MY_MIN_PREM  = 45;                                  // Minimum monthly premium (USD)
+const MY_MIN_ANB   = 18;                                  // Minimum entry age
+const MY_MAX_ANB   = 60;                                  // Maximum entry age
+const MY_MIN_TMV   = Math.ceil(MY_MIN_PREM * 13000 / 50.648); // Min TMV = ~11,551 (USD 45/mo)
 
-let myMode     = 'tmv';  // 'tmv' or 'prem'
-let myAnb      = null;
+let myMode      = 'tmv';   // 'tmv' or 'prem'
+let myAnb       = null;
 let myQuoteData = null;
 
 /* ── Mode switch ── */
@@ -3296,14 +3297,14 @@ function generateMYQuote(){
       document.getElementById('my-tmv-err').style.display='block'; return;
     }
     // Formula: Monthly = TMV × Rate / 13,000
-    monthly = (tmv * MY_RATE) / MY_BASE_TMV;
+    monthly = (tmv * MY_RATE) / MY_DIVISOR;
   } else {
     monthly = parseFloat(document.getElementById('my-prem').value);
     if(!monthly||monthly<MY_MIN_PREM){
       document.getElementById('my-prem-err').style.display='block'; return;
     }
     // Formula: TMV = Monthly × 13,000 / Rate
-    tmv = (monthly * MY_BASE_TMV) / MY_RATE;
+    tmv = (monthly * MY_DIVISOR) / MY_RATE;
   }
   // Round monthly to 2dp, TMV to nearest dollar
   monthly = Math.round(monthly*100)/100;
