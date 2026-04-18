@@ -578,11 +578,24 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--M)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
             </div>
             <div>
-              <div style="font-size:14px;font-weight:600;color:var(--T)">New quote</div>
-              <div style="font-size:11px;color:var(--T2);margin-top:2px">Pure Savings Plan — calculate premium</div>
+              <div style="font-size:14px;font-weight:600;color:var(--T)">Pure Savings Plan</div>
+              <div style="font-size:11px;color:var(--T2);margin-top:2px">Basic Pure Endowment — calculate premium</div>
             </div>
           </div>
           <span style="color:var(--BD);font-size:20px">›</span>
+        </div>
+        <!-- Manga Yako -->
+        <div class="card" onclick="switchTab('manga-yako')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;margin-bottom:10px;border:1.5px solid #fca5a5;background:linear-gradient(135deg,#fff5f5 0%,#fff 100%)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:40px;height:40px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;padding:2px">
+              <img src="data:image/png;base64,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" style="width:36px;height:36px;object-fit:contain" alt="Manga Yako">
+            </div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:#be123c">Manga Yako <span style="font-size:10px;background:#ef4444;color:#fff;padding:1px 6px;border-radius:10px;font-weight:700;margin-left:4px">HOT</span></div>
+              <div style="font-size:11px;color:var(--T2);margin-top:2px">Savings &amp; Investment Plan · USD</div>
+            </div>
+          </div>
+          <span style="color:#be123c;font-size:20px">›</span>
         </div>
 
         <!-- History -->
@@ -1037,6 +1050,31 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
           </div>
         </div>
         <!-- Placeholder products -->
+        <!-- Manga Yako — LIVE -->
+        <div class="product-card" style="border:1.5px solid #fca5a5;background:linear-gradient(135deg,#fff5f5 0%,#fff 100%)">
+          <div class="product-header">
+            <div class="product-icon" style="background:#fff;overflow:hidden;padding:2px">
+              <img src="data:image/png;base64,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" style="width:36px;height:36px;object-fit:contain" alt="Manga Yako">
+            </div>
+            <div>
+              <div class="product-name" style="color:#be123c">Manga Yako <span style="font-size:10px;background:#ef4444;color:#fff;padding:1px 6px;border-radius:10px;font-weight:700;margin-left:4px">HOT</span></div>
+              <div class="product-type">Savings &amp; Investment Plan · USD</div>
+            </div>
+          </div>
+          <div class="product-body">USD savings plan for Malawians in the diaspora. Fixed 15-year term, premiums invested in a segregated USD fund. Maturity benefit payable as cash or exchangeable for VLA residential land.</div>
+          <div class="product-footer" style="justify-content:space-between;align-items:center">
+            <span class="product-live-badge">● LIVE — Quoting enabled</span>
+            <div style="display:flex;gap:8px">
+              <button class="btn-sm btn-pdf" onclick="switchTab('manga-yako')">Quote now</button>
+              <button class="btn-sm btn-wa" onclick="shareProductWA('Manga Yako Savings & Investment Plan')">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12 12 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.87.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.555 4.129 1.526 5.869L.057 23.882l6.198-1.625A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 0 1-5.013-1.376l-.36-.213-3.716.975.993-3.63-.234-.374A9.793 9.793 0 0 1 2.182 12c0-5.417 4.401-9.818 9.818-9.818 5.417 0 9.818 4.401 9.818 9.818 0 5.417-4.401 9.818-9.818 9.818z"/></svg>
+                Share
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flexi Life Plan (placeholder) -->
         <div class="product-card">
           <div class="product-header">
             <div class="product-icon" style="background:#f0fdf4">
@@ -1380,8 +1418,6 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
 
     <!-- ── TAB: MANGA YAKO ── -->
     <div class="tab-panel" id="tab-manga-yako">
-
-      <!-- Header -->
       <div style="background:var(--M);padding:14px 18px 12px;display:flex;align-items:center;gap:10px">
         <button onclick="switchTab('home')" style="background:none;border:none;color:var(--CR);font-size:20px;cursor:pointer;padding:0;line-height:1">‹</button>
         <div style="display:flex;align-items:center;gap:10px">
@@ -1393,111 +1429,68 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
         </div>
         <span class="hot-badge" style="margin-left:auto;position:static">🔥 HOT</span>
       </div>
-
-      <!-- Mode tabs -->
       <div class="mode-tabs" style="margin-top:0">
-        <button class="mode-tab active" onclick="mySetMode('tmv')" id="my-tab-tmv">I know Target Value</button>
-        <button class="mode-tab" onclick="mySetMode('prem')" id="my-tab-prem">I know Monthly Premium</button>
+        <button class="mode-tab active" onclick="mySetMode('tmv')" id="my-tab-tmv">I know the Target Value</button>
+        <button class="mode-tab" onclick="mySetMode('prem')" id="my-tab-prem">I know the Premium</button>
       </div>
-
-      <!-- Form -->
       <div class="card">
         <div class="sec-lbl">Client details</div>
         <div class="row2">
-          <div><label class="f-lbl">First name *</label><input class="f-inp" type="text" id="my-fname" placeholder="e.g. James" autocomplete="given-name"></div>
-          <div><label class="f-lbl">Last name *</label><input class="f-inp" type="text" id="my-lname" placeholder="e.g. Phiri" autocomplete="family-name"></div>
+          <div><label class="f-lbl">First name *</label><input class="f-inp" type="text" id="my-fname" placeholder="e.g. James" oninput="myAssembleName()"></div>
+          <div><label class="f-lbl">Last name *</label><input class="f-inp" type="text" id="my-lname" placeholder="e.g. Phiri" oninput="myAssembleName()"></div>
         </div>
-        <div class="full">
-          <label class="f-lbl">Middle name <span style="font-weight:400;color:var(--BD)">(optional)</span></label>
-          <input class="f-inp" type="text" id="my-mname" placeholder="e.g. Chisomo" autocomplete="additional-name">
-        </div>
+        <div class="full"><label class="f-lbl">Middle name <span style="font-weight:400;color:var(--BD)">(optional)</span></label><input class="f-inp" type="text" id="my-mname" placeholder="e.g. Chisomo" oninput="myAssembleName()"></div>
         <div class="row2">
           <div><label class="f-lbl">Gender *</label>
-            <select class="f-inp" id="my-gender">
-              <option value="">Select</option>
-              <option>Male</option><option>Female</option>
-            </select>
+            <select class="f-inp" id="my-gender"><option value="">Select</option><option>Male</option><option>Female</option></select>
           </div>
-          <div><label class="f-lbl">Phone *</label><input class="f-inp" type="tel" id="my-phone" placeholder="+1 555 000 0000"></div>
+          <div><label class="f-lbl">Phone *</label><input class="f-inp" type="tel" id="my-phone" placeholder="+265 999 123 456"></div>
         </div>
-        <div class="full">
-          <label class="f-lbl">Email <span style="font-weight:400;color:var(--BD)">(optional)</span></label>
-          <input class="f-inp" type="email" id="my-email" placeholder="email@example.com">
+        <div class="full"><label class="f-lbl">Email <span style="font-weight:400;color:var(--BD)">(optional)</span></label><input class="f-inp" type="email" id="my-email" placeholder="email@example.com"></div>
+        <div class="row2">
+          <div><label class="f-lbl">City / Town</label><input class="f-inp" type="text" id="my-city" placeholder="e.g. London"></div>
+          <div><label class="f-lbl">Country of Residence</label><input class="f-inp" type="text" id="my-country" placeholder="e.g. United Kingdom"></div>
         </div>
       </div>
-
       <div class="card">
         <div class="sec-lbl">Age calculation</div>
         <div class="row2">
-          <div>
-            <label class="f-lbl">Date of birth *</label>
-            <input class="f-inp" type="date" id="my-dob" onchange="myCalcAge()">
-            <div id="my-dob-err" class="err"></div>
-          </div>
-          <div>
-            <label class="f-lbl">Date of quote *</label>
-            <input class="f-inp" type="date" id="my-doq" onchange="myCalcAge()">
-          </div>
+          <div><label class="f-lbl">Date of birth *</label><input class="f-inp" type="date" id="my-dob" onchange="myCalcANB()"><div id="my-dob-err" class="err"></div></div>
+          <div><label class="f-lbl">Date of quote *</label><input class="f-inp" type="date" id="my-doq" onchange="myCalcANB()"></div>
         </div>
         <div class="anb-pill" id="my-anb-pill" style="display:none"></div>
         <div id="my-age-err" class="err"></div>
       </div>
-
       <div class="card">
         <div class="sec-lbl">Policy details</div>
-        <!-- TMV mode -->
+        <div style="background:var(--ML);border-radius:var(--RB);padding:8px 12px;font-size:12px;color:var(--M);margin-bottom:12px">📋 Fixed 15-year term &nbsp;·&nbsp; USD premiums &nbsp;·&nbsp; Min USD 45/month</div>
         <div id="my-tmv-area">
           <label class="f-lbl">Target Maturity Value (USD) *</label>
-          <input class="f-inp" type="number" id="my-tmv" min="13000" step="1000" placeholder="Min USD 13,000">
-          <div id="my-tmv-err" class="err">Minimum Target Maturity Value is USD 13,000.</div>
+          <input class="f-inp" type="number" id="my-tmv" min="11700" step="500" placeholder="e.g. 13,000">
+          <div id="my-tmv-err" class="err">Minimum target value is USD 11,700 (equiv. USD 45/month).</div>
         </div>
-        <!-- Premium mode -->
         <div id="my-prem-area" style="display:none">
           <label class="f-lbl">Monthly Premium (USD) *</label>
-          <input class="f-inp" type="number" id="my-prem" min="45" step="5" placeholder="Min USD 45/month">
+          <input class="f-inp" type="number" id="my-prem" min="45" step="5" placeholder="Min USD 45">
           <div id="my-prem-err" class="err">Minimum monthly premium is USD 45.</div>
         </div>
       </div>
-
-      <button class="btn-primary" id="my-gen-btn" onclick="generateMYQuote()" style="margin-bottom:14px">
+      <button class="btn-primary" id="my-gen-btn" onclick="myGenerateQuote()" style="margin-bottom:80px">
         <span>Generate Quote</span><span style="font-size:19px">›</span>
       </button>
-
-      <!-- MY Quote output -->
       <div id="my-quote-output" style="display:none">
         <div class="action-row">
-          <button class="btn-sm btn-wa" onclick="myShareWA()">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.851L.057 23.857a.5.5 0 0 0 .603.641l6.258-1.641A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 0 1-5.015-1.376l-.36-.214-3.713.974.993-3.614-.234-.372A9.794 9.794 0 0 1 2.182 12c0-5.417 4.401-9.818 9.818-9.818 5.417 0 9.818 4.401 9.818 9.818 0 5.417-4.401 9.818-9.818 9.818z"/></svg>
-            WhatsApp
-          </button>
-          <button class="btn-sm btn-sms" onclick="myShareSMS()">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            Text
-          </button>
-          <button class="btn-sm btn-pdf" onclick="myPrintQuote()">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-            Save PDF
-          </button>
-          <button class="btn-sm btn-email-btn" onclick="myShareEmail()">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Email
-          </button>
-          <button class="btn-sm btn-outline" onclick="resetMYQuote()">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
-            New
-          </button>
+          <button class="btn-sm btn-wa" onclick="myShareWA()"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.851L.057 23.857a.5.5 0 0 0 .603.641l6.258-1.641A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 0 1-5.015-1.376l-.36-.214-3.713.974.993-3.614-.234-.372A9.794 9.794 0 0 1 2.182 12c0-5.417 4.401-9.818 9.818-9.818 5.417 0 9.818 4.401 9.818 9.818 0 5.417-4.401 9.818-9.818 9.818z"/></svg> WhatsApp</button>
+          <button class="btn-sm btn-sms" onclick="myShareSMS()"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Text</button>
+          <button class="btn-sm btn-pdf" onclick="myPrintQuote()"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Save PDF</button>
+          <button class="btn-sm btn-email-btn" onclick="myShareEmail()"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email</button>
+          <button class="btn-sm btn-outline" onclick="myResetQuote()"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg> New</button>
         </div>
-
-        <!-- MY Quote Document -->
         <div class="qdoc" id="my-q-doc">
-          <!-- Letterhead (reuses PSP letterhead structure) -->
           <div class="q-letterhead">
             <div class="q-lh-top">
-              <img class="q-lh-logo" id="my-q-logo" src="" alt="Vanguard Life Assurance">
-              <div class="q-lh-company">
-                <div class="q-lh-tagline">Life Assurance &nbsp;·&nbsp; Pension Services</div>
-                <div class="q-lh-web">🌐 vanguardlifemw.com</div>
-              </div>
+              <img class="q-lh-logo" src="${LOGO_SRC}" alt="Vanguard Life Assurance Company Limited">
+              <div class="q-lh-company"><div class="q-lh-tagline">Life Assurance &nbsp;·&nbsp; Pension Services</div><div class="q-lh-web">🌐 vanguardlifemw.com</div></div>
             </div>
             <div class="q-lh-address">
               <div class="q-lh-addr-col"><span class="q-lh-icon">🏠</span><span>Robins Road, P.O. Box 1625, Blantyre, Malawi</span></div>
@@ -1507,58 +1500,27 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
             </div>
             <div class="q-lh-divider"></div>
           </div>
-
-          <!-- Title band -->
           <div class="q-title-band">
-            <div>
-              <div class="q-title-word">Quotation</div>
-              <div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:2px;letter-spacing:.06em;text-transform:uppercase">Manga Yako Savings &amp; Investment Plan · USD</div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAIAAAABc2X6AAAVzElEQVR42u2aaZxUxdXGzzlV995eZx90WIUgoiKiEAEBF4yCE0FxA0HQoAKaqKBANFF8s0kUUOJGYjSCIoNsIqggEANhBxUR1CDDzjCAs09v996qOu+HHkZJIL/RaOL7ZupDT/f0THX/76k696nnHGRm+G8aBP9loxG4EbgRuBG4EbgRuBG4EbgRuBG4EbgRuEFDfjvT8rEfmH6KyAwIAPj/NMJpLsQvXiF+B2i/rQjXBfVYnBGODy3/J9G/pSUNCGzAGKOMNoggyAZAQoL/dKC/YeC0YcSIzMBKSUsA2QDIzMpXIJiE+M+G+Jvcw8YYZjbMvlIIKCynfM/+Z8ePf+O5Z9lLWbbFaLRWaVo+7ir9+3w1/BofxgAAjADMgIyMDGAAwRjwfU9atiSRKCtbOn3G69Om1ezbB4Ttel44aNzYzldeCSA8z0cpEUEwIwADAwKi+Pfs8K8FzIyA/AU7MyOzZtBSOpxKrJ43/7Wnnj744UdZArNsmw2XpRKpQKDr1dcMvG/0aed3YQClPIGSkACYEQARv7sRrosMACAgG81aaduxAMzWFcuKpkzd9u6fMxCzAgGhNRilwKC0fAMVyZTMy79y6JDrRt+b0awVs9IaSAhgRqLvNDCAAQBj2Ght2TYA7t/6YdHkKesXLgx4qcyATcyoNACwFChAKw+ZhLQ9zRXxRNbpba8fPeYHN99kRbNd30cgQURk6hb2t7mqvw6wAQ0MrDUCkrQqD+yb/+xT70x/WR0paxIOSAmsNTAIYSd8vyLpIUJ+2LZIKK0MoJAi5npVnvle9+43jR/Xtd9VgNL3PCIiIdK89K0t8AYAMwDotDhM60NjNANIaanKsrdefnXBM89U7SrODwXClvD9FAMT2SmGo/FUftvW/W8fXrp//7KXZ1E8nh8OEWqlPCEFC7sq6cVYdOvXb9DYMW27XgigPNcnIYkIEAgJoEFi9CstiIZE2DCbdFZRnmLDViAARq19fcHsJybv3bQ5zwkGpTBKI2gEYKKyRIpycq4YfuuAH9+Z06ItgNr+7qqiKZM/XfFuGFQ05DD7RhtCG4VTWlMN2Vl9hw27cfS92S3bKO0azUJKgchAiOnseOxWht9uhPnYAYCB2RglpAAQu95b/8rjkze98WYG66yQA8xGaUGChSyriZlQsEv//kPGjWl13vcBjOv5CGjbNvipNXPmvfrElJJt23NsERHCaK0RSVpKm/JYKnpaqwF3/7jvj24NZOVqrRAJieoZv0Xgv/sNA2ilLEmAonJv8Zynn1vxysumsjIvEraMYq0ME9pWTdKtZTzrkktuvPfe8wr7ApDvuUJIJtSMxIoASUi3qvzNF6YvmvZs7e49eaGQJVF5vhBAQiR8XZ5Szbt0GTz+/h7XDABpecoFJEkCDCPVaaS6+9exb4mADNzwm9o/A2YGNgbQCGGpePXSF16c9/Qzlbv2nBoOCoG+0cjsCMtT5nAq1aRjh0FjRve+4UYMRlztE5IEAgYgZkRkYGStlRQCQZTt3T1v6lN/mfmqrizLzQgh+OwrQotkoDLl1QJ0uqLPzePvP6NHdwD0XA+JLMtm/gK4/kvWv2wg84mBkUEDG+VbtgNarVswr2jq1P2bNucFrAARKw2AhqSHUJ1KBU85tXDEHdeMuj2U30wbl1kQCWJkYKjLdAYQ0ooMGIxmy5IAuPf9jTMnT96waGHYqBzHwfT2QQEkympjXiR62S03D7rn7iatzwBgY7henCAip8UAAAH+a0mLQSkfmKVtA8Bn69cWPT5565K3HaOiYUcoAwwChCY8Eo/rzOyLr7vxpvvuKzizHbDxfV9IaVAwa9QMAIqNEIKRwRgwGhE0SEBCNr72w4EgKG/D4rdmT35y14a1QSLSWiMAgjDgEx3SJiM/79qRt107YmTOqc00oEASSIxgGDRrBAPMBkikT2KIhPWWAzYwwmy0ImEd3rFj9tSnVr82S9TW5gWCBMoDn4xEsqoScc+2Lry236Cx9zc7rzsAKF8JFAjICIyG6IszidY+G5CWdVzS10ZKUf8bVXX0ndlzNy1bnhmwbEcyse9hMuln5OYkk25VVXnb8zoOvPuecN6phpXWgEJqox3xpRm0bwAlCcI6ogYBp58nK4/OnfrM0hemx0tLmkQDthDa04TKAABZlca06nLepYWFgOzZEoTTZ9CgQO4pwAgGDRghxYHtW1cuWuygFT4l//JB19u2s3rR4pLPPrOQtJBXDhkcPbVgw9Jlu7d8gKiat2/Ta8B1AA4AFm9at+2va0HraEH+ZVcWblq1atem9yoP7IsnY5GClmddclH3qwqdcLZrlIO8et78w3v3ECFIu8/gwaHcfGYgwvSCR6ST6sT6obVm5o9WregNMDwQuisrODIib4/IOyLOyLC4MzN4gyV+e8PVnIztXLPyMkE/BOgJsGjqJGZOeilfad/3dCI+/srLLwa4HHDgWWerVHXF3uKrm+ZfCXCDJS8GWPDkY8w8ccQdPQGuJuoTDa6aOYO1r7R6aeLEcwCuLWg2+2fjx/TsWmhjP4CBBEMlDkTqT9aoHj02LF+mtSr9eEv//Nx+AAOILgJY+vxzzOx6rtbKGKPZGD7xOMFlECSyolFHgvE9CUQoAA0AELCvdP5pLSEQjsW9vGBWq8zsdpHwrElTSj/+yLYcz/eltJZOn7Ft+fKz87KbBoN50ZAgWlZUxEfL2ufnNIuEW9vWsldmQqo2KxIqEOK0zIymIJ4eM/Zvq1cJEgFhmkYjd/5k5HvLl+1bs7FFJCvk2L6wPSdAFpwSCW5bu3b5vHlEYtnsuVBW3jo7s1VmtIUll8ya5cViBMQMgGD+3k38pwYAG8VaA5KUoZqkcn2NQMSEhgWA62pgJgCNWmkVAFSlR/70m0fRc20pKnfvLpo8Kc+ywE8pPyEJYwcPvjv7tTCJqkSiIl4TDQRLtn3y0YrlYWn5Wvu+H0QIVFVOvOOOqgO7lNGdu3bZuW3rZ5s/zM/M+DyW7NTv6gkL33hk0Zt9x963z6Hr773rgScm15SUrJo7PyccTHh+VTIRDQeLN23+YMVyaUnD2gDU3Q8a6Hggoy1lQund1YmmF3Q95fS2nmsQJCMCgxQWIAKyAR9AoTF54cj61xesnP2qlHLG44/F9+7JsB1jFADYUq5Z/Pbnf9vh2Fa0edOOvS8uj8dCht+ZMRM8l4AIpdYqK+jU7NrzxIhR/uGyNm1P3/HRRzkBWZtKte3e9YGX/nhuYd8ze/ce9ptJszauGz11qgxFV81/veyznWBMZuuWbbp2qU0kIr56e/p0UK42mpnT2fuESvwEwL7hkljMOuN7o6b97jfLFuec0db1faTj/5vS07FhrbTOZFj45JQNf/r92jlzcsMRz/WAZNxA+zPP+OCddyytY6nU+b17XjXyFi9iRYKBT1evzc/MzC44JaWUB1Dr+adEs3evXL+6aG52KFRRXiFtp9r1LuhzKUcyauLVvu9vXr7kz/MXzPjVrze99daWd98NWbI66V46bODgXzyYkhgOBrauXPnp+rWOHWRjCAhPcm8+Djidyp3M7Nse/cXU5Uv6jfqxiESTyjCl9fSXDB6us6IwFLSzM21bxvfsnTZmTFT5RlB+69MSvskuyGvWsuDTjRuyQsGgYztS7tu9Jz8/Hw3Hjxwt2VPcodt5FalEOL9JVvv2ta6f4wRUTbVFQkoHGSRAbVUFAqMxgsS6pUt/N+6hP0z45crXF6JKKeWHw45KJMoPluTl5YExFKtd+moRskbWbE62ok8E3K7Tebf+9KFAbr7np8BYyBYAYP1fpl1mBmDwfEUZ0UFj7k3YIYHSYayMxdv3vuzyIbccSLhdL75098efxMprCCAk7TdnzHrx15NTn1eFLCfDCWxeufKsTh0xGFCOc8/vHg+3b1Xhxl0vqVmf2qy5m3JzI/ba1xcd3bYlGs0mQXnRcHNJLR07FLCIlWUgOxSeM/mZybffA7XJgMC8oLNp4eKSbduEsIwxgNjQPawNu15S+4ZIAiIwAeM/5j0CICk/j9We37/wB8OGllbHjQxwZtbQhyckgkESsu0ZZ77/17W5UccH83l1bSruJWOJ2ppYLBYPWKL84OGysqNnXXB+aXlF83M6PPDCNDc74iNv+2Bj14suqvBVSNip/aUPXj/4xfE/ffUXv9y+ZFmGZSmtjPGQwWMuqayMu56v+HBVdXXKdSzLPXJkRdFriKRB8UlCfAJfWkiSLIHRMAIaJs3/cBInBBIWazDkuIyDx96/fvlftn+8fejo0ad26nRw7twOF3Y9VHqkurQsMxxSmZHbHppgRzNd7YbswKqZRbs2bApZzntr1nXrW7ileF91bapN516jfzflt6NGvbf+vXYdulx23bUr5y9oGsyIHzi0ePJkwybDlg7QUWVCdihuBd2srBEP/9zKiBjlC9tZ/dLM/Rs35oQyVi1YeN1PfhwsKDDM4kRBlidRI4CQ3vY6fakYAb+0Slww5axdIT0UCVfltGs+cd7s0kOlZ3+/MwBQZrR1p84r/7raDUT2e27/qwcUjnugfvK8Nq0fHDg0R4gPt+84t0/h2T17kLABoMcNg4eXlj714CMzimYPGnHb9WPHrHp9UVVpaTASzAjYZEmOZgzo0T27IG/O7NlXDL6p331j6+cMByK/3Lghx5Z7i4vnzyq6Zdw4pRQQNei0ZICBFTIyEJF+ZMD1OxYtzg2HAM3RmmSf+8bcPmVK5dHS/Z9uF4YVyrbndQpEMmrLy0wi5blxAyyl42uoOHTQJqo6ciQUzchpeZpndJOCguqjR4xKfbr5/WggHMzLcj2XFee3ahPJzM1rlo/sFX/w4YGdu2risR6X9Dq4f6+fTNQcOFSyZavvu9HTv3dh38trPc832KJNu0iTAkYEBAHoJ2O7tr4vFHsGg7m57Tp24vRBogERZoR0ePHYldCYzlHAxyqCmJXXJPviK+qEu3EFyi1r1024dXjLzEh5efmge8b8aOLE5u1aAeDEm2/9YNm7sVSq8w+vuOTyHzxx39icSNjV2L5b118tKBp/7cDiNes9DWd26/XYazMomqFd/+VJk6Rrnh7/8z43XH1u+/ZzXviTrq41vptS3oKn/9C+W7chPxuX26K15/tIJIQAMAEr45xel39ZL1ODk1Z9HYSgrvKFcJxwQQDQHvhKu8b3tIcstNa9f3jVFX36pkoOt5DWomee+2TlcgBnxfPTVs8qiniuA2rorTf/Zc7cSHUsUl0Tqq56f/Hi9xe/EXATVvnn4Vi5TFVQNLxz3dqHBw32d++q2P3ZRRd8v0NB8xcn/FrtL/GqKpO1NSLlR134eMlf7r7immXTp9uWxazSGoM1aO0brdJa+qvXljhNawAYGBEQOS20wBjDxigwTIRIQAQokIltZ/jDD8q8PASykrG5Tz1Z/bdNs6dMyQsHy2urr7lrpCH85K9rczNykgoClh3UevWitxwCSSCNyQo5pevXPDpkSLimWnvemV07X9Cr+8vPPpvh2MqSLbtecOPDE86/7to4cVY4cCrwM2PH7dy8zpEWK0OICCBIkpDHTE/8SsAIxIz1XsUx64gRASQhEgUCtk0o2ViAApEEKa2an9Pp2rvvPlxTk5+ZWbxq9aM33ZI6cIg1ZLVsddOdI9+a8bKVTLrKbdKiFTkBA8CuDxqNAUdalXv2TRoxyj90SBDknXtWv+G3vPL8H6PMSc9rd+nFj7711o2P/GL87DlDfj6u2o9HAwTlZStmFx1bhoDiuDI0fvUIc1pUHzMugZEBWCC4lRWln+3YvfWDsgP70tXetJUjSWijrrlrZKsuXapq4yHNR3cUZwbClb53+y9/XllVueaNN7PDIU/AzQ+Nyz/zex6ASBeWGIKWVbZvT8WevREnkPS8cZN+W6V11eGjEdtKsls4fKjIyKqNxw3ry4YNiTRv6ia9qBAlO4qBNVCdJ/UNlksZAYBJax0NBtYtXDj20ktG9LzkxUcfA5LGQB01gtEmkJN/68MPxh0JykQCoc9rYu0u7nHR0GGzn/+D43qsVUHr5ucUXtb5ogt1XQ4ERAAGSRggIZkk05KZcyiWdAC0AbAk2ZbWOiAt1poCTjAjy2gWgGQMGAVAgHQymdGw09Lfv0rHGRFIIgRdNxqLReMxO5Wqd67TD1JK30t1uapftyv71CRSrtY6FBjx8EPVhw6tf2NJxJICjS6vGl94zeqFb0akAARAAgAicn1dmUqkwEQj4bdnvFqx70DPy3sfraoUvtm5cYsQwnJsIe19H24/UlwcCQeTWkVyckA4bAzUb7yvB3ysQyO9jNPnIjR1GpMlGwGKgAm8uvhz3aMBZEYgK7dpgQL2NIRzc9uf03HJCy/FSw5bAadW6wMlhz/evOXT7X+LKQ3MaJgQfTYiL+feP04Lt29TmUo2iUTeeOXVc3t1z2/fRiAufv6lBZOm7Nv8/qZ58567b1wg5Ws0SYkXXlWYjogB1A0mPknLAxIzABsgEIYJAdAwAQAaYAIQmDbGDaNmJIA6Kyl9ARGkEFbACSc07/1wy+bFbxaEQwlP53bs1Pr8ztplOxTct3NHCqWwLJJWzPPPOKfjhbfcltG8xSMDh0V9FXH1m3NeHzBs6EtTnsJ4bNaECfPDIZ1IBBGj4cjO8oqLbrqx29UD2PiChAFgEA30auXJ+440gwEQPrOn2ddKG0YGRJAafMNaIaR9ZwICTAvs9H6vTrmHlF9VcbRZk/Zrlq/Y+N4HTRCPMk99+Gdd+l+f3iA1pSUzf//7T4p3HfY8BZBdEzPx6g6X9b3lfyY8effdecLesf0Te8mK3jfeUDTt+Sxp69oaZKjSOoVcOOq2kb+ZSE6IGfB4zfuvNLXUqQ4dyUhkZ8pI2GiDyMAkUXixWh2OAAABIdcftpGQgLlznyuysrMB+fSOZyW1Gvbg+KCUGA6c2auH0i4DI0MwJ/OqITfl5ed2uaQXIGW2aI624+tU/5HDmbjs4EHHcSqSse5XFeZ1OGvb6vWlpSWRaEa7judc0LdPh549mVH5vpAWpCVhg4lPXEyrS0PGsDHlh0q9VAKpvskBERgMByLRzKanAApiOvZ56R6eL1ukxx20DCjDQOlMhQbAOt5L8xUygLYw+OXTKoAAMGBSQBLATrvQhKJOAH/FSvJJSi1Y95ZhFkQnb9tRWJdp6xoW0rMZY8AYH5gIJZOpM0dACIHH9IHPhky6eEVkABBBECMjGGUUMSGnFQWyASIAYjYMGpEIqK7AgOlSyz913hsAnO7QAWTDRKiNTjeacb3bYRCA08WNY0eN+rYeqF8GGjGdhzG90utKr+m2HdQAVFeJRfxCqTMCGESoS38MdaWj9NHly64Lp99D/AaA/9mO+HL8G/IZJ5itjvFkb/K32tDzdbt4Gvyd+LvRU/ovAf+fHo0d8Y3AjcCNwI3AjcCNwI3AjcCNwI3AjcCNwI3AjcD/BeN/ASkamNSETWBnAAAAAElFTkSuQmCC" style="height:28px;background:#fff;border-radius:4px;padding:2px" alt="Manga Yako">
+              <div><div class="q-title-word" style="font-size:15px">Manga Yako</div><div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:1px;letter-spacing:.06em;text-transform:uppercase">Savings &amp; Investment Plan · USD</div></div>
             </div>
-            <div class="q-title-ref">
-              <div class="q-title-refnum" id="my-q-ref"></div>
-              <div class="q-title-date" id="my-q-date"></div>
-            </div>
+            <div class="q-title-ref"><div class="q-title-refnum" id="my-q-ref"></div><div class="q-title-date" id="my-q-date"></div></div>
           </div>
-
           <div class="qbody">
-            <!-- Client block -->
             <div class="cli-block" id="my-q-client"></div>
-
-            <!-- Policy summary -->
-            <div class="q-sec">Policy summary</div>
-            <div id="my-q-summary" style="background:#fff;border:1px solid var(--BD);border-radius:var(--RB);overflow:hidden;margin-bottom:8px">
-              <div style="background:#641414;padding:8px 12px;display:flex;align-items:center;gap:8px">
-                <div style="font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:rgba(216,201,180,.8)">Manga Yako</div>
-                <div style="font-size:14px;font-weight:700;color:#D8C9B4">Savings &amp; Investment Plan</div>
-              </div>
-              <div class="opt-card-body" id="my-q-rows"></div>
-            </div>
-
-            <!-- Key product features -->
+            <div class="q-sec">Policy Summary</div>
+            <div id="my-q-summary" style="border:1px solid var(--BD);border-radius:var(--RB);overflow:hidden;margin-bottom:8px;background:#fff"></div>
             <div class="feat-box" id="my-q-features"></div>
-            <div class="disclaimer" id="my-q-disclaimer"></div>
+            <div class="disclaimer">Indicative quotation only. Target maturity value is an estimate based on projected investment returns — <strong>not guaranteed</strong>. Actual value depends on premiums paid, timing, and investment performance. Regulated by the Reserve Bank of Malawi. <strong>Full Terms and Conditions apply.</strong> Call <strong>3043</strong> for full policy terms.</div>
           </div>
-
-          <!-- Footer -->
           <div class="qfoot">
-            <div style="display:flex;align-items:center;gap:14px;flex:1;flex-wrap:wrap">
-              <div>
-                <div class="qf-contact">Robins Road, P.O. Box 1625, Blantyre, Malawi</div>
-                <div class="qf-left">📱 +265 887 094 872 &nbsp;·&nbsp; ✉ info@vanguardlifemw.com &nbsp;·&nbsp; 🌐 vanguardlifemw.com</div>
-              </div>
-            </div>
-            <div style="text-align:right;flex-shrink:0">
-              <div style="font-size:10px;color:var(--CR);font-weight:700;letter-spacing:.05em;text-transform:uppercase">Life Assurance &nbsp;·&nbsp; Pension Services</div>
-              <div id="my-q-agent-foot" style="font-size:9px;color:rgba(255,255,255,.75);margin-top:3px"></div>
-            </div>
+            <div style="display:flex;align-items:center;gap:14px;flex:1;flex-wrap:wrap"><div><div class="qf-contact">Robins Road, P.O. Box 1625, Blantyre, Malawi</div><div class="qf-left">📱 +265 887 094 872 &nbsp;·&nbsp; ✉ info@vanguardlifemw.com &nbsp;·&nbsp; 🌐 vanguardlifemw.com</div></div></div>
+            <div style="text-align:right;flex-shrink:0"><div style="font-size:10px;color:var(--CR);font-weight:700;letter-spacing:.05em;text-transform:uppercase">Life Assurance &nbsp;·&nbsp; Pension Services</div><div id="my-q-agent-foot" style="font-size:9px;color:rgba(255,255,255,.75);margin-top:3px"></div></div>
           </div>
-        </div><!-- /my-q-doc -->
-
-        <div id="my-sync-status" class="sync-pill sync-pending" style="display:none">
-          <span class="sync-dot"></span><span>Saving…</span>
         </div>
-      </div><!-- /my-quote-output -->
-
+        <div id="my-sync-status" class="sync-pill sync-pending" style="display:none"><span class="sync-dot"></span><span>Saving to database…</span></div>
+      </div>
     </div><!-- /tab-manga-yako -->
 
     <!-- MORE BOTTOM SHEET -->
@@ -1961,6 +1923,9 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('sheets-url').value=url;
   document.getElementById('l-pin').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
   document.getElementById('l-user').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('l-pin').focus();});
+  // Set Manga Yako date of quote to today
+  const myDoqEl=document.getElementById('my-doq');
+  if(myDoqEl)myDoqEl.value=today;
 });
 
 /* ═══════════════════════════════════════════
@@ -3349,14 +3314,12 @@ function renderMYQuoteDoc(q){
   const featEl = document.getElementById('my-q-features');
   if(featEl) featEl.innerHTML =
     `<div class="feat-title">Key Product Features — Manga Yako Savings &amp; Investment Plan</div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Purpose &amp; Savings:</strong> <span>Designed for Malawians in the diaspora to save in USD. At maturity (15 years) you receive the accumulated fund value.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Investments:</strong> <span>Premiums pooled in a segregated USD fund — money market instruments, Malawi Stock Exchange equities, and property.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Maturity options:</strong> <span>Cash payout (in MWK at official exchange rates), OR exchange your maturity value for residential land developed by VLA.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Death benefit:</strong> <span>The higher of the fund value or USD 1,000 paid to your beneficiary.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Premiums &amp; costs:</strong> <span>Fixed monthly premium from USD 45/month. Administration and investment management fees are deducted from contributions.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Term &amp; entry:</strong> <span>Fixed 15-year plan. Entry age 18–50 years. Not renewable.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Surrender:</strong> <span>Surrender value available after 2 years. Before 2 years, all or most contributions may be lost. After 2 years: take surrender value or make policy paid-up.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Top-ups:</strong> <span>Additional contributions may be made to increase your fund value.</span></div></div>`;
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Savings &amp; Investments:</strong> <span>Contributions invested in a segregated USD fund (money market, Malawi Stock Exchange equities, property). Accumulated fund value paid at maturity (15 years). Top-up contributions permitted.</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Maturity options:</strong> <span>Cash benefit in MWK at official exchange rates, OR exchange maturity value for residential land developed by VLA (subject to availability at maturity).</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Death benefit:</strong> <span>The higher of the fund value or USD 1,000 paid to your nominated beneficiary.</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Premiums &amp; costs:</strong> <span>Fixed monthly premium from USD 45/month. Administration and investment management fees apply. Additional top-up contributions may be made.</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Term &amp; eligibility:</strong> <span>Fixed 15-year plan. Entry age 18–50 years. Not renewable — terminates on death, maturity, or surrender.</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Surrender &amp; cooling-off:</strong> <span>No surrender value before 2 years (contributions may be lost). After 2 years: take surrender value or make policy paid-up. 30-day cooling-off period from policy receipt.</span></div></div>`;
 
   // Disclaimer
   const discEl = document.getElementById('my-q-disclaimer');
@@ -3438,12 +3401,12 @@ function myShareSMS(){
   if(!myQuoteData){showToast('Generate a quote first');return;}
   const q=myQuoteData;
   const {mobile}=loadProfileData();
-  const nl='\n';
-  const txt='VLA Quote '+q.ref+nl+
-    q.clientName+' | 15yrs'+nl+
-    'Target Maturity: USD '+q.tmv.toLocaleString('en')+nl+
-    'Monthly Premium: USD '+q.monthly.toFixed(2)+nl+
-    'Death Benefit: USD '+q.deathBen.toLocaleString('en')+nl+
+  const txt=
+    'VLA Manga Yako '+q.ref+'\n'+
+    q.clientName+' | 15yrs\n'+
+    'Premium: '+usd(q.prem)+'/mo\n'+
+    'Target Maturity: '+usd(q.tmv)+'\n'+
+    'Death Benefit: Higher of Fund Value or '+usd(1000)+'\n'+
     'Agent: '+q.agent+(mobile?' - '+mobile:'')+' - Call Centre 3043';
   window.open('sms:'+encodeURIComponent(q.clientPhone||'')+'?body='+encodeURIComponent(txt),'_blank');
 }
@@ -3459,9 +3422,9 @@ function myShareEmail(){
     'Please find your Manga Yako Savings & Investment Plan quotation attached (PDF).'+nl+nl+
     'Ref: '+q.ref+nl+
     'Target Maturity Value: USD '+q.tmv.toLocaleString('en')+nl+
-    'Monthly Premium: USD '+q.monthly.toFixed(2)+'/month'+nl+
+    'Monthly Premium: USD '+q.prem.toFixed(2)+'/month'+nl+
     'Total Contributions (15 years): USD '+q.totalPaid.toLocaleString('en')+nl+
-    'Death Benefit (minimum): USD '+q.deathBen.toLocaleString('en')+nl+nl+
+    'Death Benefit (minimum): USD '+q.deathBenefit.toLocaleString('en')+nl+nl+
     'Target maturity value is an estimate and not guaranteed.'+nl+
     'Full Terms and Conditions apply. Call 3043 or visit vanguardlifemw.com'+nl+nl+
     'Kind regards,'+nl+q.agent+
@@ -3480,6 +3443,311 @@ function initMYDoq(){
   if(el&&!el.value){
     const t=new Date();
     el.value=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   MANGA YAKO — QUOTING ENGINE
+═══════════════════════════════════════════ */
+
+/* -- Mode switch -- */
+function mySetMode(m){
+  myMode = m;
+  ['tmv','prem'].forEach(x=>{
+    document.getElementById('my-tab-'+x).classList.toggle('active', x===m);
+  });
+  document.getElementById('my-tmv-area').style.display  = m==='tmv'  ? '' : 'none';
+  document.getElementById('my-prem-area').style.display = m==='prem' ? '' : 'none';
+}
+
+/* -- Name assembly -- */
+function myAssembleName(){
+  const f=(document.getElementById('my-fname').value||'').trim();
+  const m=(document.getElementById('my-mname').value||'').trim();
+  const l=(document.getElementById('my-lname').value||'').trim();
+  return [f,m,l].filter(Boolean).join(' ');
+}
+
+/* -- ANB calculation -- */
+function myCalcANB(){
+  const d1=document.getElementById('my-dob').value;
+  const d2=document.getElementById('my-doq').value;
+  const pill=document.getElementById('my-anb-pill');
+  const dobErr=document.getElementById('my-dob-err');
+  dobErr.style.display='none'; pill.style.display='none'; myAnb=null;
+  if(!d1||!d2)return;
+  const dob=new Date(d1), doq=new Date(d2);
+  const today=new Date(); today.setHours(0,0,0,0);
+  if(dob>today){dobErr.textContent='Date of birth cannot be in the future.';dobErr.style.display='block';return;}
+  if(doq<dob){dobErr.textContent='Date of quote cannot be before date of birth.';dobErr.style.display='block';return;}
+  let age=doq.getFullYear()-dob.getFullYear();
+  const hadBday=doq.getMonth()>dob.getMonth()||(doq.getMonth()===dob.getMonth()&&doq.getDate()>=dob.getDate());
+  if(!hadBday)age--;
+  myAnb=age+1;
+  pill.style.display='block';
+  if(myAnb<MY_MIN_ANB||myAnb>MY_MAX_ANB){
+    pill.className='anb-pill anb-err';
+    pill.textContent=`ANB: ${myAnb} — outside eligible range (18–60)`;
+  } else {
+    pill.className='anb-pill anb-ok';
+    pill.textContent=`✓ Age at Next Birthday (ANB): ${myAnb}`;
+  }
+}
+
+/* -- Helper: format USD -- */
+function usd(n){ return 'USD '+Math.round(n).toLocaleString('en'); }
+
+/* -- Generate reference -- */
+function myGenRef(){ return 'MY-'+Date.now().toString(36).toUpperCase(); }
+
+/* -- Generate Quote -- */
+function myGenerateQuote(){
+  // Clear errors
+  document.querySelectorAll('#tab-manga-yako .err').forEach(e=>e.style.display='none');
+  let ok=true;
+  const fname=(document.getElementById('my-fname').value||'').trim();
+  const lname=(document.getElementById('my-lname').value||'').trim();
+  if(!fname||!lname){showToast('First and last name required');ok=false;}
+  if(!document.getElementById('my-gender').value){showToast('Gender required');ok=false;}
+  if(!document.getElementById('my-phone').value.trim()){showToast('Phone required');ok=false;}
+  if(!myAnb||myAnb<MY_MIN_ANB||myAnb>MY_MAX_ANB){
+    const e=document.getElementById('my-age-err');
+    e.textContent=myAnb?`ANB ${myAnb} outside eligible range 18–60.`:'Enter valid dates of birth and quote.';
+    e.style.display='block'; ok=false;
+  }
+  let prem=0, tmv=0;
+  if(myMode==='tmv'){
+    tmv=parseFloat(document.getElementById('my-tmv').value)||0;
+    if(tmv<MY_MIN_TMV){document.getElementById('my-tmv-err').style.display='block';ok=false;}
+    else prem = tmv * MY_RATE / MY_DIVISOR;
+  } else {
+    prem=parseFloat(document.getElementById('my-prem').value)||0;
+    if(prem<MY_MIN_PREM){document.getElementById('my-prem-err').style.display='block';ok=false;}
+    else tmv = prem * MY_DIVISOR / MY_RATE;
+  }
+  if(!ok)return;
+  // Round premium to 2dp, TMV to whole dollar
+  prem = Math.round(prem*100)/100;
+  tmv  = Math.round(tmv);
+  const totalContrib = prem * 12 * MY_TERM; // total premiums over 15 years
+  const deathBenefit = Math.max(1000, tmv); // higher of fund value or USD 1,000
+
+  const mname=(document.getElementById('my-mname').value||'').trim();
+  const clientName=[fname,mname,lname].filter(Boolean).join(' ');
+  const ref=myGenRef();
+  const doq=document.getElementById('my-doq').value;
+  const dob=document.getElementById('my-dob').value;
+
+  myQuoteData={
+    ref, agent:currentAgent,
+    product:'Manga Yako',
+    clientName, clientFirstName:fname, clientMiddleName:mname, clientLastName:lname,
+    clientPhone:document.getElementById('my-phone').value.trim(),
+    clientEmail:document.getElementById('my-email').value.trim(),
+    clientCity:document.getElementById('my-city').value.trim(),
+    clientCountry:document.getElementById('my-country').value.trim(),
+    gender:document.getElementById('my-gender').value,
+    dob, anb:myAnb, doq,
+    term:MY_TERM, prem, tmv, totalContrib, deathBenefit,
+    mode:myMode
+  };
+
+  myRenderQuoteDoc(myQuoteData);
+  document.getElementById('my-quote-output').style.display='block';
+  document.getElementById('my-quote-output').scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('my-gen-btn').style.display='none';
+  document.title='VLA-Quote-'+ref;
+  mySyncToSheets(myQuoteData);
+}
+
+/* -- Render quote document -- */
+function myRenderQuoteDoc(q){
+  document.getElementById('my-q-ref').textContent='Ref: '+q.ref;
+  document.getElementById('my-q-date').textContent=fmtDate(q.doq);
+
+  // Client block
+  const addr=[q.clientCity,q.clientCountry].filter(Boolean).join(', ');
+  document.getElementById('my-q-client').innerHTML=
+    `<div class="cli-av">${initials(q.clientName)}</div>
+     <div>
+       <div class="cli-name">${q.clientName} &nbsp;<span style="font-size:11px;font-weight:400;color:var(--T2)">(${q.gender})</span></div>
+       <div class="cli-sub">
+         📞 ${q.clientPhone}${q.clientEmail?' &nbsp;|&nbsp; ✉️ '+q.clientEmail:''}<br>
+         ${addr?'📍 '+addr:''}
+       </div>
+     </div>`;
+
+  // Policy summary table
+  document.getElementById('my-q-summary').innerHTML=`
+    <div style="background:var(--M);padding:7px 12px;display:flex;align-items:center;gap:8px">
+      <div style="font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.7)">Savings &amp; Investment</div>
+      <div style="margin-left:auto;font-size:9px;color:rgba(255,255,255,.6)">Currency: USD</div>
+    </div>
+    <div style="padding:8px 14px;background:#fff">
+      <div class="opt-card-row"><span class="opt-card-lbl">Monthly Premium</span><span class="opt-card-val prem-val">${usd(q.prem)}/month</span></div>
+      <div class="opt-card-row"><span class="opt-card-lbl">Policy Term</span><span class="opt-card-val">15 years</span></div>
+      <div class="opt-card-row"><span class="opt-card-lbl">Total Contributions</span><span class="opt-card-val">${usd(q.totalContrib)}</span></div>
+      <div class="opt-card-row"><span class="opt-card-lbl">Target Maturity Value</span><span class="opt-card-val mat-val">${usd(q.tmv)}</span></div>
+      <div class="opt-card-row" style="border:none"><span class="opt-card-lbl">Death Benefit</span><span class="opt-card-val">Higher of Fund Value or ${usd(1000)}</span></div>
+    </div>`;
+
+  // Key features
+  const ck=`<div class="feat-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+  document.getElementById('my-q-features').innerHTML=
+    `<div class="feat-title">Key Product Features — Manga Yako Savings &amp; Investment Plan</div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Savings &amp; Investment:</strong> <span>Premiums invested in a segregated USD fund (money market, Malawi Stock Exchange equities, and property). Target maturity value payable after 15 years.</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Maturity options:</strong> <span>Receive cash payout in Malawi Kwacha at official exchange rates, OR exchange your maturity value for residential land developed by VLA.</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Death benefit:</strong> <span>If you pass away before maturity, your beneficiary receives the higher of the fund value or USD 1,000.</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Premiums &amp; costs:</strong> <span>Fixed monthly contributions (min USD 45). Deductions include administration charges and investment management fees. Additional top-up contributions permitted.</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Surrender &amp; paid-up:</strong> <span>Surrender value available after 2 years of continuous premiums. Policy can be made paid-up after 2 years (no further premiums; reduced benefits at maturity). Cooling-off period: 30 days.</span></div></div>
+     <div class="feat-item">${ck}<div class="feat-txt"><strong>Entry age:</strong> <span>18–60 years. Fixed 15-year term. Not renewable.</span></div></div>`;
+
+  // Agent footer
+  const {mobile:agMobile}=loadProfileData();
+  document.getElementById('my-q-agent-foot').innerHTML=
+    `Agent: ${q.agent}`+(agMobile?`<br>📱 ${agMobile}`:'')+`<br>Alt: 3043 (VLA)<br>${fmtDate(q.doq)}`;
+}
+
+/* -- Reset -- */
+function myResetQuote(){
+  myQuoteData=null; myAnb=null;
+  ['my-fname','my-mname','my-lname','my-phone','my-email','my-city','my-country',
+   'my-tmv','my-prem'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('my-gender').value='';
+  document.getElementById('my-dob').value='';
+  const t=new Date();
+  document.getElementById('my-doq').value=
+    `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+  ['my-anb-pill','my-quote-output','my-sync-status','my-age-err',
+   'my-tmv-err','my-prem-err','my-dob-err'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.style.display='none';
+  });
+  mySetMode('tmv');
+  setTimeout(()=>{
+    document.getElementById('my-gen-btn').style.display='flex';
+    document.title='VLA Agent App';
+    showToast('Ready for new Manga Yako quote');
+  },50);
+}
+
+/* -- Print/PDF -- */
+function myPrintQuote(){
+  if(myQuoteData) document.title='VLA-Quote-'+myQuoteData.ref;
+  try{
+    window.print();
+    setTimeout(()=>{
+      const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+      if(isStandalone)showToast('If no dialog: tap ⋮ → Open in Chrome → Save PDF',5000);
+    },1500);
+  }catch(e){showToast('Tap ⋮ → Open in Chrome → Save PDF',5000);}
+}
+
+/* -- WhatsApp -- */
+function myShareWA(){
+  if(!myQuoteData){showToast('Generate a quote first');return;}
+  captureQuoteImageFromEl(document.getElementById('my-q-doc'),canvas=>{
+    const link=document.createElement('a');
+    link.download='VLA-Quote-'+myQuoteData.ref+'.png';
+    link.href=canvas.toDataURL('image/png');link.click();
+    const q=myQuoteData;
+    const {mobile}=loadProfileData();
+    setTimeout(()=>{
+      const txt=
+        '*Vanguard Life Assurance — Manga Yako Savings & Investment Plan*\n'+
+        '━━━━━━━━━━━━━━━━━━━━━━━\n'+
+        '👤 Client: *'+q.clientName+'*\n'+
+        '📋 Ref: '+q.ref+'\n'+
+        '📅 Date: '+q.doq+'\n\n'+
+        '💰 Monthly Premium: *'+usd(q.prem)+'/month*\n'+
+        '📆 Policy Term: 15 years\n'+
+        '📈 Target Maturity Value: *'+usd(q.tmv)+'*\n'+
+        '🏦 Total Contributions: '+usd(q.totalContrib)+'\n'+
+        '🛡️ Death Benefit: min '+usd(q.deathBenefit)+'\n\n'+
+        '_Indicative only. Subject to investment performance._\n'+
+        'Agent: '+q.agent+
+        (mobile?'\n📱 '+mobile:'\n📞 3043 (VLA)')+
+        (mobile?'\n📞 3043 (VLA Call Centre)':'')+
+        '\n🌐 vanguardlifemw.com';
+      window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');
+      showToast('✓ Image saved! Open WhatsApp → attach from gallery',4500);
+    },800);
+  });
+}
+
+/* -- SMS -- */
+function myShareSMS(){
+  if(!myQuoteData){showToast('Generate a quote first');return;}
+  const q=myQuoteData;
+  const {mobile}=loadProfileData();
+  const txt=
+    'VLA Manga Yako '+q.ref+'\n'+
+    q.clientName+' - 15yrs\n'+
+    'Premium: '+usd(q.prem)+'/mo\n'+
+    'Target Maturity: '+usd(q.tmv)+'\n'+
+    'Agent: '+q.agent+
+    (mobile?' - '+mobile:'')+
+    ' - Call Centre 3043';
+  window.open('sms:'+encodeURIComponent(q.clientPhone||'')+'?body='+encodeURIComponent(txt),'_blank');
+}
+
+/* -- Email -- */
+function myShareEmail(){
+  if(!myQuoteData){showToast('Generate a quote first');return;}
+  const q=myQuoteData;
+  const {mobile}=loadProfileData();
+  const sub=encodeURIComponent('Vanguard Life — Manga Yako Quotation for '+q.clientName);
+  const body=encodeURIComponent(
+    'Dear '+q.clientName+',\n\n'+
+    'Please find your Manga Yako Savings & Investment Plan quotation attached.\n\n'+
+    'Ref: '+q.ref+'\n'+
+    'Monthly Premium: '+usd(q.prem)+'/month\n'+
+    'Policy Term: 15 years\n'+
+    'Target Maturity Value: '+usd(q.tmv)+'\n'+
+    'Total Contributions: '+usd(q.totalContrib)+'\n'+
+    'Death Benefit: min '+usd(q.deathBenefit)+'\n\n'+
+    'At maturity you may take cash (in Malawi Kwacha) or exchange for VLA residential land.\n\n'+
+    'Full Terms and Conditions apply.\n\n'+
+    'Kind regards,\n'+q.agent+
+    (mobile?'\n📱 '+mobile+'\n':'')+
+    '📞 3043 (VLA Call Centre)\n'+
+    'Vanguard Life Assurance Company Limited'
+  );
+  window.open('mailto:'+encodeURIComponent(q.clientEmail||'')+'?subject='+sub+'&body='+body,'_blank');
+  showToast('Opening email… Print dialog will follow',3500);
+  setTimeout(()=>myPrintQuote(),3000);
+}
+
+/* -- Sheets sync -- */
+async function mySyncToSheets(q){
+  const url=localStorage.getItem(SHEETS_URL_KEY)||APPS_SCRIPT_URL;
+  const ss=document.getElementById('my-sync-status');
+  if(!url){ss.style.display='none';return;}
+  ss.className='sync-pill sync-pending';
+  ss.innerHTML='<span class="sync-dot"></span><span>Saving to central database…</span>';
+  ss.style.display='inline-flex';
+  const payload={
+    action:'logQuote',
+    Product:'Manga Yako',
+    Timestamp:new Date().toISOString(),
+    Agent:q.agent||'',QuoteRef:q.ref||'',
+    FirstName:q.clientFirstName||'',MiddleName:q.clientMiddleName||'',LastName:q.clientLastName||'',
+    ClientName:q.clientName||'',ClientEmail:q.clientEmail||'',ClientPhone:q.clientPhone||'',
+    Gender:q.gender||'',City:q.clientCity||'',Country:q.clientCountry||'',
+    DOB:q.dob||'',ANB:String(q.anb||''),QuoteDate:q.doq||'',
+    Term:String(MY_TERM),Frequency:'monthly',
+    MonthlyPremium:String(Math.round(q.prem*100)/100),
+    TargetMaturityValue:String(Math.round(q.tmv)),
+    TotalContributions:String(Math.round(q.totalContrib)),
+    DeathBenefit:String(Math.round(q.deathBenefit)),
+    Mode:q.mode==='tmv'?'Target to Premium':'Premium to Target'
+  };
+  try{
+    await fetch(url,{method:'POST',mode:'no-cors',body:JSON.stringify(payload)});
+    ss.className='sync-pill sync-ok';
+    ss.innerHTML='<span class="sync-dot"></span><span>✓ Saved to Google Sheets</span>';
+  }catch(err){
+    ss.className='sync-pill sync-fail';
+    ss.innerHTML='<span class="sync-dot"></span><span>⚠️ Saved locally only</span>';
   }
 }
 
