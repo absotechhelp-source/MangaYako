@@ -1397,24 +1397,7 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
       </div>
     </div><!-- /tab-profile -->
 
-  </div><!-- /app-body -->
 
-  <!-- BOTTOM NAV — Home · Quotes · More -->
-  <nav class="bottom-nav">
-    <button class="nav-btn active" id="nav-home" onclick="switchTab('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      Home
-    </button>
-    <button class="nav-btn" id="nav-quotes-hub" onclick="switchTab('quotes-hub')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-      Quotes
-    </button>
-    <button class="nav-btn" id="nav-more" onclick="openMore()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-      More
-    </button>
-  </nav>
-</div><!-- /screen-app -->
 
     <!-- ── TAB: MANGA YAKO ── -->
     <div class="tab-panel" id="tab-manga-yako">
@@ -1449,7 +1432,47 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
         <div class="full"><label class="f-lbl">Email <span style="font-weight:400;color:var(--BD)">(optional)</span></label><input class="f-inp" type="email" id="my-email" placeholder="email@example.com"></div>
         <div class="row2">
           <div><label class="f-lbl">City / Town</label><input class="f-inp" type="text" id="my-city" placeholder="e.g. London"></div>
-          <div><label class="f-lbl">Country of Residence</label><input class="f-inp" type="text" id="my-country" placeholder="e.g. United Kingdom"></div>
+          <div><label class="f-lbl">Country of Residence *</label>
+            <select class="f-inp" id="my-country">
+              <option value="">Select country</option>
+              <optgroup label="Common">
+                <option>United Kingdom</option>
+                <option>United States</option>
+                <option>South Africa</option>
+                <option>Canada</option>
+                <option>Australia</option>
+                <option>Germany</option>
+                <option>Netherlands</option>
+                <option>Sweden</option>
+                <option>Norway</option>
+                <option>Denmark</option>
+                <option>Belgium</option>
+                <option>Ireland</option>
+                <option>Portugal</option>
+                <option>Botswana</option>
+                <option>Zimbabwe</option>
+                <option>Zambia</option>
+                <option>Tanzania</option>
+                <option>Mozambique</option>
+              </optgroup>
+              <optgroup label="Other">
+                <option>Afghanistan</option><option>Albania</option><option>Algeria</option>
+                <option>Angola</option><option>Argentina</option><option>Austria</option>
+                <option>Bahrain</option><option>Brazil</option><option>Cameroon</option>
+                <option>China</option><option>Congo</option><option>Egypt</option>
+                <option>Ethiopia</option><option>Finland</option><option>France</option>
+                <option>Ghana</option><option>India</option><option>Indonesia</option>
+                <option>Italy</option><option>Japan</option><option>Jordan</option>
+                <option>Kenya</option><option>Kuwait</option><option>Malaysia</option>
+                <option>Mauritius</option><option>Morocco</option><option>Namibia</option>
+                <option>New Zealand</option><option>Nigeria</option><option>Oman</option>
+                <option>Pakistan</option><option>Qatar</option><option>Rwanda</option>
+                <option>Saudi Arabia</option><option>Singapore</option><option>Spain</option>
+                <option>Switzerland</option><option>Uganda</option><option>UAE</option>
+                <option>Other</option>
+              </optgroup>
+            </select>
+          </div>
         </div>
       </div>
       <div class="card">
@@ -1522,6 +1545,27 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
         <div id="my-sync-status" class="sync-pill sync-pending" style="display:none"><span class="sync-dot"></span><span>Saving to database…</span></div>
       </div>
     </div><!-- /tab-manga-yako -->
+
+  </div><!-- /app-body -->
+
+  <!-- BOTTOM NAV — Home · Quotes · More -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" id="nav-home" onclick="switchTab('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </button>
+    <button class="nav-btn" id="nav-quotes-hub" onclick="switchTab('quotes-hub')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Quotes
+    </button>
+    <button class="nav-btn" id="nav-more" onclick="openMore()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+      More
+    </button>
+  </nav>
+</div><!-- /screen-app -->
+
+    
 
     <!-- MORE BOTTOM SHEET -->
 <div class="more-overlay" id="more-overlay" onclick="closeMore()">
@@ -2007,8 +2051,19 @@ function switchTab(tab){
   if(ab)ab.scrollTop=0;
   const gb=document.getElementById('gen-btn');
   if(gb&&tab==='quote')gb.style.display='flex';
+  // Update topbar title based on active product
+  const tbar=document.getElementById('topbar-agent-name');
+  if(tbar){
+    const adminSuffix=isAdmin?' [Admin]':'';
+    if(tab==='manga-yako')
+      tbar.textContent='Manga Yako · '+currentAgent+adminSuffix;
+    else if(['quote','quotes-hub','history'].includes(tab))
+      tbar.textContent='Pure Savings Plan · '+currentAgent+adminSuffix;
+    else
+      tbar.textContent='VLA Sales App · '+currentAgent+adminSuffix;
+  }
   // Keep Quotes nav highlighted when inside quote sub-screens
-  if(['quote','history','quotes-hub'].includes(tab)){
+  if(['quote','history','quotes-hub','manga-yako'].includes(tab)){
     const qBtn=document.getElementById('nav-quotes-hub');
     if(qBtn)qBtn.classList.add('active');
   }
@@ -3478,8 +3533,24 @@ function myCalcANB(){
   if(!d1||!d2)return;
   const dob=new Date(d1), doq=new Date(d2);
   const today=new Date(); today.setHours(0,0,0,0);
-  if(dob>today){dobErr.textContent='Date of birth cannot be in the future.';dobErr.style.display='block';return;}
-  if(doq<dob){dobErr.textContent='Date of quote cannot be before date of birth.';dobErr.style.display='block';return;}
+  if(dob>today){
+    dobErr.textContent='Date of birth cannot be in the future.';
+    dobErr.style.display='block'; return;
+  }
+  const ageCheck=(today-dob)/(365.25*24*3600*1000);
+  if(ageCheck>100){
+    dobErr.textContent='Please check date of birth — age exceeds 100 years.';
+    dobErr.style.display='block'; return;
+  }
+  if(doq<dob){
+    dobErr.textContent='Date of quote cannot be before date of birth.';
+    dobErr.style.display='block'; return;
+  }
+  const daysFwd=(doq-today)/(24*3600*1000);
+  if(daysFwd>30){
+    dobErr.textContent='Date of quote cannot be more than 30 days in the future.';
+    dobErr.style.display='block'; return;
+  }
   let age=doq.getFullYear()-dob.getFullYear();
   const hadBday=doq.getMonth()>dob.getMonth()||(doq.getMonth()===dob.getMonth()&&doq.getDate()>=dob.getDate());
   if(!hadBday)age--;
@@ -3487,10 +3558,10 @@ function myCalcANB(){
   pill.style.display='block';
   if(myAnb<MY_MIN_ANB||myAnb>MY_MAX_ANB){
     pill.className='anb-pill anb-err';
-    pill.textContent=`ANB: ${myAnb} — outside eligible range (18–60)`;
+    pill.textContent=`ANB: ${myAnb} — outside eligible range (18–60). Entry age is 18–60.`;
   } else {
     pill.className='anb-pill anb-ok';
-    pill.textContent=`✓ Age at Next Birthday (ANB): ${myAnb}`;
+    pill.textContent=`✓ Age at Next Birthday (ANB): ${myAnb} — eligible`;
   }
 }
 
@@ -3502,56 +3573,56 @@ function myGenRef(){ return 'MY-'+Date.now().toString(36).toUpperCase(); }
 
 /* -- Generate Quote -- */
 function myGenerateQuote(){
-  // Clear errors
   document.querySelectorAll('#tab-manga-yako .err').forEach(e=>e.style.display='none');
-  let ok=true;
+  let errors=[];
   const fname=(document.getElementById('my-fname').value||'').trim();
   const lname=(document.getElementById('my-lname').value||'').trim();
-  if(!fname||!lname){showToast('First and last name required');ok=false;}
-  if(!document.getElementById('my-gender').value){showToast('Gender required');ok=false;}
-  if(!document.getElementById('my-phone').value.trim()){showToast('Phone required');ok=false;}
-  if(!myAnb||myAnb<MY_MIN_ANB||myAnb>MY_MAX_ANB){
+  if(!fname||!lname) errors.push('First and last name required');
+  if(!document.getElementById('my-gender').value) errors.push('Gender required');
+  if(!document.getElementById('my-phone').value.trim()) errors.push('Phone required');
+  if(!myAnb){
     const e=document.getElementById('my-age-err');
-    e.textContent=myAnb?`ANB ${myAnb} outside eligible range 18–60.`:'Enter valid dates of birth and quote.';
-    e.style.display='block'; ok=false;
+    e.textContent='Enter valid date of birth and date of quote.';
+    e.style.display='block'; errors.push('age');
+  } else if(myAnb<MY_MIN_ANB||myAnb>MY_MAX_ANB){
+    const e=document.getElementById('my-age-err');
+    e.textContent='Age at Next Birthday '+myAnb+' is outside eligible range 18–60.';
+    e.style.display='block'; errors.push('age');
   }
   let prem=0, tmv=0;
   if(myMode==='tmv'){
     tmv=parseFloat(document.getElementById('my-tmv').value)||0;
-    if(tmv<MY_MIN_TMV){document.getElementById('my-tmv-err').style.display='block';ok=false;}
-    else prem = tmv * MY_RATE / MY_DIVISOR;
+    if(tmv<MY_MIN_TMV){document.getElementById('my-tmv-err').style.display='block';errors.push('tmv');}
+    else prem=tmv*MY_RATE/MY_DIVISOR;
   } else {
     prem=parseFloat(document.getElementById('my-prem').value)||0;
-    if(prem<MY_MIN_PREM){document.getElementById('my-prem-err').style.display='block';ok=false;}
-    else tmv = prem * MY_DIVISOR / MY_RATE;
+    if(prem<MY_MIN_PREM){document.getElementById('my-prem-err').style.display='block';errors.push('prem');}
+    else tmv=prem*MY_DIVISOR/MY_RATE;
   }
-  if(!ok)return;
-  // Round premium to 2dp, TMV to whole dollar
-  prem = Math.round(prem*100)/100;
-  tmv  = Math.round(tmv);
-  const totalContrib = prem * 12 * MY_TERM; // total premiums over 15 years
-  const deathBenefit = Math.max(1000, tmv); // higher of fund value or USD 1,000
-
+  if(errors.length){
+    const msg=errors.filter(e=>e!=='age'&&e!=='tmv'&&e!=='prem');
+    if(msg.length) showToast(msg[0]);
+    return;
+  }
+  prem=Math.round(prem*100)/100;
+  tmv=Math.round(tmv);
+  const totalContrib=Math.round(prem*12*MY_TERM);
+  const deathBenefit=Math.max(1000,tmv);
   const mname=(document.getElementById('my-mname').value||'').trim();
   const clientName=[fname,mname,lname].filter(Boolean).join(' ');
   const ref=myGenRef();
   const doq=document.getElementById('my-doq').value;
   const dob=document.getElementById('my-dob').value;
-
   myQuoteData={
-    ref, agent:currentAgent,
-    product:'Manga Yako',
-    clientName, clientFirstName:fname, clientMiddleName:mname, clientLastName:lname,
+    ref,agent:currentAgent,product:'Manga Yako',
+    clientName,clientFirstName:fname,clientMiddleName:mname,clientLastName:lname,
     clientPhone:document.getElementById('my-phone').value.trim(),
     clientEmail:document.getElementById('my-email').value.trim(),
     clientCity:document.getElementById('my-city').value.trim(),
     clientCountry:document.getElementById('my-country').value.trim(),
     gender:document.getElementById('my-gender').value,
-    dob, anb:myAnb, doq,
-    term:MY_TERM, prem, tmv, totalContrib, deathBenefit,
-    mode:myMode
+    dob,anb:myAnb,doq,term:MY_TERM,prem,tmv,totalContrib,deathBenefit,mode:myMode
   };
-
   myRenderQuoteDoc(myQuoteData);
   document.getElementById('my-quote-output').style.display='block';
   document.getElementById('my-quote-output').scrollIntoView({behavior:'smooth',block:'start'});
@@ -3559,8 +3630,6 @@ function myGenerateQuote(){
   document.title='VLA-Quote-'+ref;
   mySyncToSheets(myQuoteData);
 }
-
-/* -- Render quote document -- */
 function myRenderQuoteDoc(q){
   document.getElementById('my-q-ref').textContent='Ref: '+q.ref;
   document.getElementById('my-q-date').textContent=fmtDate(q.doq);
