@@ -2977,20 +2977,7 @@ function printQuote(){
   const qdoc=document.getElementById('q-doc');
   if(!qdoc){showToast('No quote to print');return;}
   if(quoteData) document.title='VLA-Quote-'+quoteData.ref;
-  const frame=document.getElementById('print-frame');
-  frame.innerHTML=qdoc.outerHTML;
-  try{
-    window.print();
-    setTimeout(()=>{
-      frame.innerHTML='';
-      document.title='VLA Agent App';
-      const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-      if(isStandalone) showToast('If no dialog appeared: tap ⋮ → Open in Chrome → Save PDF',5000);
-    },1500);
-  }catch(e){
-    frame.innerHTML='';
-    showToast('Tap ⋮ → Open in Chrome → then Save PDF',5000);
-  }
+  printViaIframe(qdoc);
 }
 
 /* ═══════════════════════════════════════════
@@ -3277,245 +3264,7 @@ function myCalcAge(){
 }
 
 /* ── Generate Manga Yako Quote ── */
-function generateMYQuote(){
-  // Clear errors
-  document.querySelectorAll('#tab-manga-yako .err').forEach(e=>e.style.display='none');
-  let ok=true;
 
-  const fname  = document.getElementById('my-fname').value.trim();
-  const mname  = document.getElementById('my-mname').value.trim();
-  const lname  = document.getElementById('my-lname').value.trim();
-  const name   = [fname,mname,lname].filter(Boolean).join(' ');
-  const gender = document.getElementById('my-gender').value;
-  const phone  = document.getElementById('my-phone').value.trim();
-  const email  = document.getElementById('my-email').value.trim();
-  const dob    = document.getElementById('my-dob').value;
-  const doq    = document.getElementById('my-doq').value;
-
-  if(!fname) { showToast('First name required'); ok=false; }
-  if(!lname) { showToast('Last name required'); ok=false; }
-  if(!gender){ showToast('Gender required'); ok=false; }
-  if(!phone) { showToast('Phone required'); ok=false; }
-  if(!myAnb||myAnb<18||myAnb>50){
-    const e=document.getElementById('my-age-err');
-    e.textContent=myAnb?`ANB ${myAnb} is outside eligible range (18–50).`:'Enter valid dates of birth and quote.';
-    e.style.display='block'; ok=false;
-  }
-  if(!ok) return;
-
-  let monthly, tmv;
-  if(myMode==='tmv'){
-    tmv = parseFloat(document.getElementById('my-tmv').value);
-    if(!tmv||tmv<MY_MIN_TMV){
-      document.getElementById('my-tmv-err').style.display='block'; return;
-    }
-    // Formula: Monthly = TMV × Rate / 13,000
-    monthly = (tmv * MY_RATE) / MY_DIVISOR;
-  } else {
-    monthly = parseFloat(document.getElementById('my-prem').value);
-    if(!monthly||monthly<MY_MIN_PREM){
-      document.getElementById('my-prem-err').style.display='block'; return;
-    }
-    // Formula: TMV = Monthly × 13,000 / Rate
-    tmv = (monthly * MY_DIVISOR) / MY_RATE;
-  }
-  // Round monthly to 2dp, TMV to nearest dollar
-  monthly = Math.round(monthly*100)/100;
-  tmv     = Math.round(tmv);
-
-  const totalPaid  = Math.round(monthly * 12 * MY_TERM * 100) / 100;
-  const deathBen   = Math.max(tmv, MY_DEATH_BEN);
-  const ref        = 'MY-' + Date.now().toString(36).toUpperCase();
-  const age        = myAnb - 1;  // current age at quote date
-
-  myQuoteData = {
-    ref, agent:currentAgent,
-    clientName:name, clientFirstName:fname, clientMiddleName:mname, clientLastName:lname,
-    clientEmail:email, clientPhone:phone, gender, dob, anb:myAnb, doq,
-    monthly, tmv, totalPaid, deathBen,
-    product:'Manga Yako'
-  };
-
-  renderMYQuoteDoc(myQuoteData);
-  document.getElementById('my-quote-output').style.display='block';
-  document.getElementById('my-quote-output').scrollIntoView({behavior:'smooth',block:'start'});
-  document.getElementById('my-gen-btn').style.display='none';
-  document.title = 'VLA-Quote-' + ref;
-  showToast('✓ Manga Yako quote generated');
-}
-
-/* ── Render the quote document ── */
-function renderMYQuoteDoc(q){
-  const refEl = document.getElementById('my-q-ref');
-  if(refEl) refEl.textContent = 'Ref: '+q.ref;
-  const dateEl = document.getElementById('my-q-date');
-  if(dateEl) dateEl.textContent = fmtDate(q.doq);
-
-  // Copy VLA logo from PSP doc
-  const logoEl = document.getElementById('my-q-logo');
-  const srcLogo = document.getElementById('vla-full-logo');
-  if(logoEl && srcLogo) logoEl.src = srcLogo.src;
-
-  // Client block
-  const clientEl = document.getElementById('my-q-client');
-  if(clientEl) clientEl.innerHTML =
-    `<div class="cli-av">${initials(q.clientName)}</div>
-     <div>
-       <div class="cli-name">${q.clientName} &nbsp;<span style="font-size:11px;font-weight:400;color:var(--T2)">(${q.gender})</span></div>
-       <div class="cli-sub">
-         📞 ${q.clientPhone}${q.clientEmail?' &nbsp;|&nbsp; ✉️ '+q.clientEmail:''}<br>
-         🎂 DOB: ${fmtDate(q.dob)} &nbsp;|&nbsp; ANB: ${q.anb}
-       </div>
-     </div>`;
-
-  // Summary rows
-  const rowsEl = document.getElementById('my-q-rows');
-  if(rowsEl) rowsEl.innerHTML = `
-    <div class="opt-card-row"><span class="opt-card-lbl">Policy Term</span><span class="opt-card-val">15 years</span></div>
-    <div class="opt-card-row"><span class="opt-card-lbl">Target Maturity Value</span><span class="opt-card-val prem-val">USD ${q.tmv.toLocaleString('en')}</span></div>
-    <div class="opt-card-row"><span class="opt-card-lbl">Monthly Premium</span><span class="opt-card-val prem-val">USD ${q.monthly.toFixed(2)}</span></div>
-    <div class="opt-card-row"><span class="opt-card-lbl">Total Contributions</span><span class="opt-card-val">USD ${q.totalPaid.toLocaleString('en')}</span></div>
-    <div class="opt-card-row"><span class="opt-card-lbl">Death Benefit (min)</span><span class="opt-card-val">USD ${q.deathBen.toLocaleString('en')}</span></div>
-    <div class="opt-card-row" style="border-bottom:none"><span class="opt-card-lbl">Currency</span><span class="opt-card-val">USD (paid in MWK at official rate)</span></div>`;
-
-  // Key product features — sections 2, 4, 5, 6 from KFS
-  const ck = `<div class="feat-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
-  const featEl = document.getElementById('my-q-features');
-  if(featEl) featEl.innerHTML =
-    `<div class="feat-title">Key Product Features — Manga Yako Savings &amp; Investment Plan</div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Savings &amp; Investments:</strong> <span>Contributions invested in a segregated USD fund (money market, Malawi Stock Exchange equities, property). Accumulated fund value paid at maturity (15 years). Top-up contributions permitted.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Maturity options:</strong> <span>Cash benefit in MWK at official exchange rates, OR exchange maturity value for residential land developed by VLA (subject to availability at maturity).</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Death benefit:</strong> <span>The higher of the fund value or USD 1,000 paid to your nominated beneficiary.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Premiums &amp; costs:</strong> <span>Fixed monthly premium from USD 45/month. Administration and investment management fees apply. Additional top-up contributions may be made.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Term &amp; eligibility:</strong> <span>Fixed 15-year plan. Entry age 18–50 years. Not renewable — terminates on death, maturity, or surrender.</span></div></div>
-     <div class="feat-item">${ck}<div class="feat-txt"><strong>Surrender &amp; cooling-off:</strong> <span>No surrender value before 2 years (contributions may be lost). After 2 years: take surrender value or make policy paid-up. 30-day cooling-off period from policy receipt.</span></div></div>`;
-
-  // Disclaimer
-  const discEl = document.getElementById('my-q-disclaimer');
-  if(discEl) discEl.innerHTML =
-    `Target maturity value is an estimate. Actual value depends on premiums paid, timing, and investment returns — <strong>not guaranteed</strong>. Land option subject to availability at maturity. Payouts in MWK at official exchange rates. Regulated by the Reserve Bank of Malawi. <strong>Full Terms and Conditions apply.</strong> Call <strong>3043</strong> for full policy terms. 30-day cooling-off period applies.`;
-
-  // Footer
-  const footEl = document.getElementById('my-q-agent-foot');
-  const {mobile:agMobile} = loadProfileData();
-  if(footEl) footEl.innerHTML =
-    `Agent: ${q.agent}`+
-    (agMobile?`<br>📱 ${agMobile}`:'')+
-    `<br>Alt: 3043 (VLA)<br>${fmtDate(q.doq)}`;
-}
-
-/* ── Reset Manga Yako form ── */
-function resetMYQuote(){
-  myAnb=null; myQuoteData=null;
-  ['my-fname','my-mname','my-lname','my-phone','my-email','my-tmv','my-prem'].forEach(id=>{
-    const el=document.getElementById(id); if(el) el.value='';
-  });
-  document.getElementById('my-gender').value='';
-  document.getElementById('my-dob').value='';
-  // Reset doq to today
-  const t=new Date();
-  document.getElementById('my-doq').value=
-    `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
-  document.getElementById('my-anb-pill').style.display='none';
-  document.getElementById('my-quote-output').style.display='none';
-  document.getElementById('my-gen-btn').style.display='flex';
-  document.querySelectorAll('#tab-manga-yako .err').forEach(e=>e.style.display='none');
-  mySetMode('tmv');
-  document.title='VLA Agent App';
-  showToast('Ready for new Manga Yako quote');
-}
-
-/* ── Sharing ── */
-function myPrintQuote(){
-  const qdoc=document.getElementById('my-q-doc');
-  if(!qdoc){showToast('No quote to print');return;}
-  if(myQuoteData) document.title='VLA-Quote-'+myQuoteData.ref;
-  const frame=document.getElementById('print-frame');
-  frame.innerHTML=qdoc.outerHTML;
-  try{
-    window.print();
-    setTimeout(()=>{
-      frame.innerHTML='';
-      document.title='VLA Agent App';
-      const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-      if(isStandalone) showToast('If no dialog appeared: tap ⋮ → Open in Chrome → Save PDF',5000);
-    },1500);
-  }catch(e){
-    frame.innerHTML='';
-    showToast('Tap ⋮ → Open in Chrome → then Save PDF',5000);
-  }
-}
-function myShareWA(){
-  if(!myQuoteData){showToast('Generate a quote first');return;}
-  captureQuoteImageFromEl(document.getElementById('my-q-doc'),canvas=>{
-    const link=document.createElement('a');
-    link.download='VLA-Quote-'+myQuoteData.ref+'.png';
-    link.href=canvas.toDataURL('image/png');link.click();
-    const q=myQuoteData;
-    const {mobile}=loadProfileData();
-    setTimeout(()=>{
-      const txt=
-        '*Vanguard Life Assurance \u2014 Manga Yako Savings & Investment Plan*\n'+
-        '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+
-        '\uD83D\uDC64 Client: *'+q.clientName+'*\n'+
-        '\uD83D\uDCCB Ref: '+q.ref+'\n'+
-        '\uD83D\uDCC5 Date: '+q.doq+'\n\n'+
-        '\uD83D\uDCB0 Target Maturity Value: *USD '+q.tmv.toLocaleString('en')+'*\n'+
-        '\uD83D\uDCB3 Monthly Premium: USD '+q.monthly.toFixed(2)+'/month\n'+
-        'Term: 15 years\n'+
-        'Death Benefit: Higher of Fund Value or USD 1,000\n\n'+
-        'Indicative only - not guaranteed.\n'+
-        'Agent: '+q.agent+
-        (mobile?'\n'+mobile:'')+
-        '\nCall Centre 3043'+
-        '\nvanguardlifemw.com';
-      window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');
-      showToast('✓ Image saved! Open WhatsApp → attach from gallery',4500);
-    },800);
-  });
-}
-
-function myShareSMS(){
-  if(!myQuoteData){showToast('Generate a quote first');return;}
-  const q=myQuoteData;
-  const {mobile}=loadProfileData();
-  const txt=
-    'VLA Manga Yako '+q.ref+'\n'+
-    q.clientName+' | 15yrs\n'+
-    'Premium: '+usd(q.prem)+'/mo\n'+
-    'Target Maturity: '+usd(q.tmv)+'\n'+
-    'Death Benefit: Higher of Fund Value or '+usd(1000)+'\n'+
-    'Agent: '+q.agent+(mobile?' - '+mobile:'')+' - Call Centre 3043';
-  window.open('sms:'+encodeURIComponent(q.clientPhone||'')+'?body='+encodeURIComponent(txt),'_blank');
-}
-
-function myShareEmail(){
-  if(!myQuoteData){showToast('Generate a quote first');return;}
-  const q=myQuoteData;
-  const {mobile}=loadProfileData();
-  const sub=encodeURIComponent('Vanguard Life — Manga Yako Savings & Investment Plan Quotation for '+q.clientName);
-  const nl='\n';
-  const body=encodeURIComponent(
-    'Dear '+q.clientName+','+nl+nl+
-    'Please find your Manga Yako Savings & Investment Plan quotation attached (PDF).'+nl+nl+
-    'Ref: '+q.ref+nl+
-    'Target Maturity Value: USD '+q.tmv.toLocaleString('en')+nl+
-    'Monthly Premium: USD '+q.prem.toFixed(2)+'/month'+nl+
-    'Total Contributions (15 years): USD '+q.totalPaid.toLocaleString('en')+nl+
-    'Death Benefit: Higher of Fund Value or USD 1,000'+nl+nl+
-    'Target maturity value is an estimate and not guaranteed.'+nl+
-    'Full Terms and Conditions apply. Call 3043 or visit vanguardlifemw.com'+nl+nl+
-    'Kind regards,'+nl+q.agent+
-    (mobile?nl+mobile+nl:'')+
-    '3043 (VLA Call Centre)'+nl+
-    'Vanguard Life Assurance Company Limited'
-  );
-  window.open('mailto:'+encodeURIComponent(q.clientEmail||'')+'?subject='+sub+'&body='+body,'_blank');
-  showToast('Opening email… Print dialog will follow',3500);
-  setTimeout(()=>myPrintQuote(), 3000);
-}
-
-/* ── Init MY doq to today on tab open ── */
 function initMYDoq(){
   const el=document.getElementById('my-doq');
   if(el&&!el.value){
@@ -3727,17 +3476,11 @@ function myResetQuote(){
 
 /* -- Print/PDF -- */
 function myPrintQuote(){
+  const qdoc=document.getElementById('my-q-doc');
+  if(!qdoc){showToast('No quote to print');return;}
   if(myQuoteData) document.title='VLA-Quote-'+myQuoteData.ref;
-  try{
-    window.print();
-    setTimeout(()=>{
-      const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-      if(isStandalone)showToast('If no dialog: tap ⋮ → Open in Chrome → Save PDF',5000);
-    },1500);
-  }catch(e){showToast('Tap ⋮ → Open in Chrome → Save PDF',5000);}
+  printViaIframe(qdoc);
 }
-
-/* -- WhatsApp -- */
 function myShareWA(){
   if(!myQuoteData){showToast('Generate a quote first');return;}
   captureQuoteImageFromEl(document.getElementById('my-q-doc'),canvas=>{
@@ -3757,7 +3500,7 @@ function myShareWA(){
         '📆 Policy Term: 15 years\n'+
         '📈 Target Maturity Value: *'+usd(q.tmv)+'*\n'+
         '🏦 Total Contributions: '+usd(q.totalContrib)+'\n'+
-        '🛡️ Death Benefit: min '+usd(q.deathBenefit)+'\n\n'+
+        '🛡️ Death Benefit: Higher of Fund Value or USD 1,000\n\n'+
         '_Indicative only. Subject to investment performance._\n'+
         'Agent: '+q.agent+
         (mobile?'\n📱 '+mobile:'\n📞 3043 (VLA)')+
@@ -3779,6 +3522,7 @@ function myShareSMS(){
     q.clientName+' - 15yrs\n'+
     'Premium: '+usd(q.prem)+'/mo\n'+
     'Target Maturity: '+usd(q.tmv)+'\n'+
+    'Death Benefit: Higher of Fund Value or USD 1,000\n'+
     'Agent: '+q.agent+
     (mobile?' - '+mobile:'')+
     ' - Call Centre 3043';
@@ -3799,7 +3543,7 @@ function myShareEmail(){
     'Policy Term: 15 years\n'+
     'Target Maturity Value: '+usd(q.tmv)+'\n'+
     'Total Contributions: '+usd(q.totalContrib)+'\n'+
-    'Death Benefit: min '+usd(q.deathBenefit)+'\n\n'+
+    'Death Benefit: Higher of Fund Value or USD 1,000\n\n'+
     'At maturity you may take cash (in Malawi Kwacha) or exchange for VLA residential land.\n\n'+
     'Full Terms and Conditions apply.\n\n'+
     'Kind regards,\n'+q.agent+
@@ -3844,6 +3588,60 @@ async function mySyncToSheets(q){
     ss.className='sync-pill sync-fail';
     ss.innerHTML='<span class="sync-dot"></span><span>⚠️ Saved locally only</span>';
   }
+}
+
+/* ═══════════════════════════════════════════
+   IFRAME PRINT HELPER — reliable cross-browser
+═══════════════════════════════════════════ */
+function printViaIframe(qdocEl){
+  // Extract page CSS (all variables, classes, fonts)
+  const css = Array.from(document.querySelectorAll('style'))
+    .map(s=>s.textContent).join('\n');
+  // Google Fonts link
+  const fontLink = document.querySelector('link[href*="fonts.googleapis"]');
+  const fontHref = fontLink ? fontLink.href : '';
+
+  // Create hidden iframe
+  let iframe = document.getElementById('vla-print-iframe');
+  if(!iframe){
+    iframe = document.createElement('iframe');
+    iframe.id = 'vla-print-iframe';
+    iframe.style.cssText = 'position:fixed;right:-9999px;bottom:-9999px;width:1px;height:1px;border:0;';
+    document.body.appendChild(iframe);
+  }
+  const doc = iframe.contentDocument || iframe.contentWindow.document;
+  doc.open();
+  doc.write(`<!DOCTYPE html><html><head>
+    <meta charset="UTF-8">
+    ${fontHref?`<link rel="stylesheet" href="${fontHref}">` : ''}
+    <style>
+      body{margin:0;padding:0;background:#fff;}
+      ${css}
+      /* Print-specific overrides */
+      .qdoc{box-shadow:none!important;border:none!important;max-width:100%!important;margin:0!important;width:100%!important;}
+      .opt-cards{grid-template-columns:1fr 1fr!important;gap:6px!important;}
+      .opt-card-val{font-size:13px!important;white-space:nowrap!important;}
+      .opt-card-lbl{font-size:9px!important;}
+      .opt-card-row{padding:4px 0!important;}
+      .opt-card-body{padding:6px 8px!important;}
+      .opt-card-head{padding:6px 8px!important;}
+      .prem-val{font-size:13px!important;}
+      .mat-val{font-size:13px!important;}
+      .qbody{padding:6px 10px!important;}
+      .bd-compare{grid-template-columns:1fr 1fr!important;}
+    </style>
+  </head><body>
+    ${qdocEl.outerHTML}
+  </body></html>`);
+  doc.close();
+  // Allow time for fonts & images to load, then print
+  setTimeout(()=>{
+    iframe.contentWindow.focus();
+    iframe.contentWindow.print();
+    setTimeout(()=>{
+      document.title='VLA Agent App';
+    },1000);
+  },600);
 }
 
 /* ═══════════════════════════════════════════
