@@ -272,8 +272,9 @@ input:checked+.tog-trk:before{transform:translateX(17px)}
 .setting-val{font-size:13px;color:var(--T2)}
 .setting-tag{background:var(--ML);color:var(--M);font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px}
 @media print{
-  /* Main window: hide everything when iframe is printing */
-  body > *{display:none!important}
+  /* Hide UI chrome if browser print is ever triggered */
+  .topbar,.bottom-nav,.action-row,.mode-tabs,.sync-pill,
+  .more-overlay,.hist-modal,.toast{display:none!important}
 }
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(30,10,10,.92);color:#fff;padding:10px 20px;border-radius:var(--RD);font-size:13px;opacity:0;transition:all .25s;pointer-events:none;white-space:nowrap;z-index:999}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -2644,12 +2645,8 @@ function shareHistEmail(){
     'Vanguard Life Assurance Company Limited'
   );
   window.open('mailto:'+encodeURIComponent(q.clientEmail||'')+'?subject='+sub+'&body='+body,'_blank');
-  showToast('Opening email… PDF will download for attachment',3500);
-  setTimeout(()=>{
-    const origTitle = document.title;
-    document.title = 'VLA-Quote-' + q.ref;
-    window.print();
-  }, 3000);
+  showToast('Opening email… PDF downloading for attachment',3500);
+  setTimeout(()=>{ printQuote(); }, 2000);
 }
 
 /* ═══════════════════════════════════════════
@@ -3588,6 +3585,5 @@ if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
 }
 </script>
-<div id="print-frame"></div>
 </body>
 </html>
