@@ -2823,30 +2823,15 @@ function captureQuotePDF(elId, filename, callback){
 
       const pdf = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
       const imgH = (canvas.height * pdfW) / canvas.width;
+      const imgData = canvas.toDataURL('image/jpeg', 0.93);
 
       if(imgH <= pdfH){
-        // ── Fits perfectly on one page ───────────────────────
-        pdf.addImage(canvas.toDataURL('image/jpeg', 0.93), 'JPEG', 0, 0, pdfW, imgH);
-      } else if(imgH <= pdfH * 1.5){
-        // ── Slightly over: scale down to fit one page ─────────
-        // Shrink proportionally so all content fits on A4
-        const fitW = pdfW * (pdfH / imgH);
-        const xOff = (pdfW - fitW) / 2;
-        pdf.addImage(canvas.toDataURL('image/jpeg', 0.93), 'JPEG', xOff, 0, fitW, pdfH);
+        // ── Fits on one page — place at top, natural height ──
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfW, imgH);
       } else {
-        // ── Genuinely multi-page: paginate ────────────────────
-        const pxPerPage = (pdfH * canvas.width) / pdfW;
-        let yPx = 0, pageNum = 0;
-        while(yPx < canvas.height){
-          const sliceH = Math.min(pxPerPage, canvas.height - yPx);
-          const sc = document.createElement('canvas');
-          sc.width = canvas.width; sc.height = sliceH;
-          sc.getContext('2d').drawImage(canvas, 0, yPx, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
-          const sliceMmH = (sliceH * pdfW) / canvas.width;
-          if(pageNum > 0) pdf.addPage();
-          pdf.addImage(sc.toDataURL('image/jpeg', 0.93), 'JPEG', 0, 0, pdfW, sliceMmH);
-          yPx += pxPerPage; pageNum++;
-        }
+        // ── Overflows — compress height to fill exactly one A4 page ──
+        // This covers both the "footer spills over" case and genuine overflow
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfW, pdfH);
       }
       hideSavingOverlay();
       callback(pdf, filename);
