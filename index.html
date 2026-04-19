@@ -3528,22 +3528,30 @@ async function mySyncToSheets(q){
   const ss=document.getElementById('my-sync-status');
   if(!url){ss.style.display='none';return;}
   ss.className='sync-pill sync-pending';
-  ss.innerHTML='<span class="sync-dot"></span><span>Saving to central database…</span>';
+  ss.innerHTML='<span class="sync-dot"></span><span>Saving to database…</span>';
   ss.style.display='inline-flex';
+  // Payload field names match MY_QUOTE_HEADERS exactly
   const payload={
-    action:'logQuote',
-    Product:'Manga Yako',
+    action:'logMyQuote',
     Timestamp:new Date().toISOString(),
-    Agent:q.agent||'',QuoteRef:q.ref||'',
-    FirstName:q.clientFirstName||'',MiddleName:q.clientMiddleName||'',LastName:q.clientLastName||'',
-    ClientName:q.clientName||'',ClientEmail:q.clientEmail||'',ClientPhone:q.clientPhone||'',
-    Gender:q.gender||'',City:q.clientCity||'',Country:q.clientCountry||'',
-    DOB:q.dob||'',ANB:String(q.anb||''),QuoteDate:q.doq||'',
-    Term:String(MY_TERM),Frequency:'monthly',
+    Agent:q.agent||'',
+    QuoteRef:q.ref||'',
+    FirstName:q.clientFirstName||'',
+    MiddleName:q.clientMiddleName||'',
+    LastName:q.clientLastName||'',
+    ClientName:q.clientName||'',
+    ClientEmail:q.clientEmail||'',
+    ClientPhone:q.clientPhone||'',
+    Gender:q.gender||'',
+    City:q.clientCity||'',
+    Country:q.clientCountry||'',
+    DOB:q.dob||'',
+    ANB:String(q.anb||''),
+    QuoteDate:q.doq||'',
+    Term:String(MY_TERM),
     MonthlyPremium:String(Math.round(q.prem*100)/100),
     TargetMaturityValue:String(Math.round(q.tmv)),
     TotalContributions:String(Math.round(q.totalContrib)),
-    DeathBenefit:String(Math.round(q.deathBenefit)),
     Mode:q.mode==='tmv'?'Target to Premium':'Premium to Target'
   };
   try{
