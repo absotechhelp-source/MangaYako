@@ -2644,7 +2644,7 @@ function shareHistEmail(){
     'Vanguard Life Assurance Company Limited'
   );
   window.open('mailto:'+encodeURIComponent(q.clientEmail||'')+'?subject='+sub+'&body='+body,'_blank');
-  showToast('Opening email… Print dialog will follow',3500);
+  showToast('Opening email… PDF will download for attachment',3500);
   setTimeout(()=>{
     const origTitle = document.title;
     document.title = 'VLA-Quote-' + q.ref;
@@ -2943,7 +2943,7 @@ function shareEmail(){
     'Vanguard Life Assurance Company Limited'
   );
   window.open('mailto:'+encodeURIComponent(q.clientEmail||'')+'?subject='+sub+'&body='+body,'_blank');
-  showToast('Opening email… Print dialog will follow',3500);
+  showToast('Opening email… PDF will download for attachment',3500);
   setTimeout(()=>{
     // Use printQuote() which handles PWA standalone mode
     printQuote();
@@ -2954,10 +2954,12 @@ function shareEmail(){
    PRINT WITH QUOTE REFERENCE AS FILENAME
 ═══════════════════════════════════════════ */
 function printQuote(){
-  const qdoc=document.getElementById('q-doc');
-  if(!qdoc){showToast('No quote to print');return;}
-  if(quoteData) document.title='VLA-Quote-'+quoteData.ref;
-  printViaIframe(qdoc);
+  if(!quoteData){showToast('Generate a quote first');return;}
+  const ref=quoteData.ref||'PSP';
+  captureQuotePDF('q-doc','VLA-Quote-'+ref+'.pdf',function(pdf,filename){
+    pdf.save(filename);
+    showToast('✓ PDF saved: '+filename,3000);
+  });
 }
 
 /* ═══════════════════════════════════════════
@@ -3456,10 +3458,12 @@ function myResetQuote(){
 
 /* -- Print/PDF -- */
 function myPrintQuote(){
-  const qdoc=document.getElementById('my-q-doc');
-  if(!qdoc){showToast('No quote to print');return;}
-  if(myQuoteData) document.title='VLA-Quote-'+myQuoteData.ref;
-  printViaIframe(qdoc);
+  if(!myQuoteData){showToast('Generate a quote first');return;}
+  const ref=myQuoteData.ref||'MY';
+  captureQuotePDF('my-q-doc','VLA-Quote-'+ref+'.pdf',function(pdf,filename){
+    pdf.save(filename);
+    showToast('✓ PDF saved: '+filename,3000);
+  });
 }
 function myShareWA(){
   if(!myQuoteData){showToast('Generate a quote first');return;}
@@ -3532,7 +3536,7 @@ function myShareEmail(){
     'Vanguard Life Assurance Company Limited'
   );
   window.open('mailto:'+encodeURIComponent(q.clientEmail||'')+'?subject='+sub+'&body='+body,'_blank');
-  showToast('Opening email… Print dialog will follow',3500);
+  showToast('Opening email… PDF will download for attachment',3500);
   setTimeout(()=>myPrintQuote(),3000);
 }
 
@@ -3573,61 +3577,9 @@ async function mySyncToSheets(q){
 /* ═══════════════════════════════════════════
    IFRAME PRINT HELPER — reliable cross-browser
 ═══════════════════════════════════════════ */
-function printViaIframe(qdocEl){
-  // KEY: window.print() must be called FROM INSIDE the iframe to print iframe content.
-  // Calling iframe.contentWindow.print() from parent prints the PARENT window in Chrome.
-  const css = Array.from(document.querySelectorAll('style'))
-    .map(s=>s.textContent).join('\n');
-  const fontLink = document.querySelector('link[href*="fonts.googleapis"]');
-  const fontHref = fontLink ? fontLink.href : '';
-  const qdocHtml = qdocEl.outerHTML;
+/* printViaIframe retired — now using captureQuotePDF (html2canvas+jsPDF) */
+function printViaIframe(el){ captureQuotePDF(el.id, 'VLA-Quote.pdf', function(pdf,f){pdf.save(f);}); }
 
-  // Give iframe a full viewport size so content lays out correctly
-  let iframe = document.getElementById('vla-print-iframe');
-  if(!iframe){
-    iframe = document.createElement('iframe');
-    iframe.id = 'vla-print-iframe';
-    document.body.appendChild(iframe);
-  }
-  // Size it visibly so Chrome renders it (zero-size iframes may not render)
-  iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;border:0;z-index:-1;opacity:0;';
-
-  const doc = iframe.contentDocument || iframe.contentWindow.document;
-  doc.open();
-  // Inline script calls window.print() from WITHIN the iframe — prints iframe content
-  doc.write('<!DOCTYPE html><html><head>' +
-    '<meta charset="UTF-8">' +
-    (fontHref ? '<link rel="stylesheet" href="' + fontHref + '">' : '') +
-    '<style>' +
-      'body{margin:0;padding:16px;background:#fff;font-family:Arial,sans-serif;}' +
-      css +
-      '.qdoc{box-shadow:none!important;border:none!important;max-width:100%!important;margin:0!important;width:100%!important;}' +
-      '.opt-cards{grid-template-columns:1fr 1fr!important;gap:6px!important;}' +
-      '.opt-card-val{font-size:13px!important;white-space:nowrap!important;}' +
-      '.opt-card-lbl{font-size:9px!important;}' +
-      '.opt-card-row{padding:4px 0!important;}' +
-      '.opt-card-body{padding:6px 8px!important;}' +
-      '.opt-card-head{padding:6px 8px!important;}' +
-      '.prem-val{font-size:13px!important;}' +
-      '.mat-val{font-size:13px!important;}' +
-      '.qbody{padding:6px 10px!important;}' +
-      '.bd-compare{grid-template-columns:1fr 1fr!important;}' +
-    '</style>' +
-    '</head><body>' +
-    qdocHtml +
-    '<script>' +
-      'window.addEventListener("load",function(){' +
-        'setTimeout(function(){window.print();},400);' +
-      '});' +
-    '<\/script>' +
-    '</body></html>');
-  doc.close();
-  // Hide iframe again after print dialog closes
-  setTimeout(()=>{
-    iframe.style.cssText = 'position:fixed;top:0;left:0;width:0;height:0;border:0;opacity:0;';
-    document.title = 'VLA Agent App';
-  }, 3000);
-}
 
 /* ═══════════════════════════════════════════
    PWA SERVICE WORKER
