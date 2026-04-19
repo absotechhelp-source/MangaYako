@@ -2801,16 +2801,14 @@ function captureQuotePDF(elId, filename, callback){
   const pdfW = 210; // A4 width mm
   const pdfH = 297; // A4 height mm
 
-  // Fix width for consistent capture
   const origWidth = el.style.width;
   const origMaxWidth = el.style.maxWidth;
   el.style.width = RENDER_W + 'px';
   el.style.maxWidth = RENDER_W + 'px';
 
-  // Capture full document in one shot
   setTimeout(()=>{
     html2canvas(el, {
-      scale: 1.8,
+      scale: 1.5,
       useCORS: true,
       allowTaint: true,
       backgroundColor: '#ffffff',
@@ -2820,32 +2818,34 @@ function captureQuotePDF(elId, filename, callback){
       scrollX: 0,
       scrollY: -window.scrollY
     }).then(canvas=>{
-      // Restore width
       el.style.width = origWidth;
       el.style.maxWidth = origMaxWidth;
 
       const pdf = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
-      const imgH = (canvas.height * pdfW) / canvas.width; // full image height in mm
+      const imgH = (canvas.height * pdfW) / canvas.width;
 
       if(imgH <= pdfH){
-        // ── Fits on ONE page ────────────────────────────────
+        // ── Fits perfectly on one page ───────────────────────
         pdf.addImage(canvas.toDataURL('image/jpeg', 0.93), 'JPEG', 0, 0, pdfW, imgH);
+      } else if(imgH <= pdfH * 1.5){
+        // ── Slightly over: scale down to fit one page ─────────
+        // Shrink proportionally so all content fits on A4
+        const fitW = pdfW * (pdfH / imgH);
+        const xOff = (pdfW - fitW) / 2;
+        pdf.addImage(canvas.toDataURL('image/jpeg', 0.93), 'JPEG', xOff, 0, fitW, pdfH);
       } else {
-        // ── Overflows: slice into A4 pages ──────────────────
+        // ── Genuinely multi-page: paginate ────────────────────
         const pxPerPage = (pdfH * canvas.width) / pdfW;
-        let yPx = 0;
-        let pageNum = 0;
+        let yPx = 0, pageNum = 0;
         while(yPx < canvas.height){
           const sliceH = Math.min(pxPerPage, canvas.height - yPx);
           const sc = document.createElement('canvas');
-          sc.width = canvas.width;
-          sc.height = sliceH;
+          sc.width = canvas.width; sc.height = sliceH;
           sc.getContext('2d').drawImage(canvas, 0, yPx, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
           const sliceMmH = (sliceH * pdfW) / canvas.width;
           if(pageNum > 0) pdf.addPage();
           pdf.addImage(sc.toDataURL('image/jpeg', 0.93), 'JPEG', 0, 0, pdfW, sliceMmH);
-          yPx += pxPerPage;
-          pageNum++;
+          yPx += pxPerPage; pageNum++;
         }
       }
       hideSavingOverlay();
@@ -2854,7 +2854,7 @@ function captureQuotePDF(elId, filename, callback){
       el.style.width = origWidth;
       el.style.maxWidth = origMaxWidth;
       hideSavingOverlay();
-      showToast('PDF error — try Print/PDF');
+      showToast('PDF error — please try again');
     });
   }, 150);
 }
